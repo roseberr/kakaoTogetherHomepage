@@ -5,12 +5,9 @@ import environment.environmentHomepage.domain.user.Role;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-
 
 @Getter
 @NoArgsConstructor
-@Setter
 @Entity
 
 public class User extends BaseTimeEntity {
@@ -29,13 +26,14 @@ public class User extends BaseTimeEntity {
 
     @Column
     private String picture;
+
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Role role;
 
     @Builder
-    public User(Long id,  String name,String picture ,String email,Role role) {
-        this.id = id;
+    public User(String name,String picture ,String email,Role role){
         this.name = name;
         this.picture=picture;
         this.email = email;
@@ -52,4 +50,5 @@ public class User extends BaseTimeEntity {
         this.picture=picture;
         return this;
     }
+
 }

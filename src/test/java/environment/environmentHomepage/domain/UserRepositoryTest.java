@@ -1,51 +1,57 @@
 package environment.environmentHomepage.domain;
 
+
+import org.aspectj.lang.annotation.After;
+import org.junit.jupiter.api.Test;
+import environment.environmentHomepage.domain.user.Role;
 import environment.environmentHomepage.domain.user.User;
 import environment.environmentHomepage.domain.user.UserRepository;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import java.util.List;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class UserRepositoryTest {
+
+public class UserRepositoryTest {
     @Autowired
 
-    private UserRepository userRepository;
+    UserRepository userRepository;
+    @After("")
+    public void cleanup(){
+        userRepository.deleteAll();
+    }
     @Test
-
     public void 멤버_불러오기(){
         //given
-        String password="비밀번호";
-        Long id=3L;
-        String userID="solchan";
 
-        String name="solchan";
-        String email1="solchan";
-        LocalDateTime date=LocalDateTime.now();
 
+        String name="솔찬";
+        String email="solchan@gmail.com";
 
         userRepository.save(User.builder()
-                .password(password)
-                .id(id).userId(userID)
                 .name(name)
-                .email1(email1)
-                .joinDate(date)
+                .email(email)
                 .build());
+
+/*
+        userRepository.save(User.builder()
+                .name(name)
+                .email(email)
+                .build());
+            */
+
         //when
         List<User> userList = userRepository.findAll();
 
         //then
         User user = userList.get(0);
         assertThat(user.getName()).isEqualTo(name);
-
-
-
 
     }
 

@@ -23,8 +23,11 @@ dependencies {
 	annotationProcessor('org.projectlombok:lombok')
 	testAnnotationProcessor('org.projectlombok:lombok')
 
-
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	implementation('org.springframework.session::spring-session-jdbc')
 
 }
 

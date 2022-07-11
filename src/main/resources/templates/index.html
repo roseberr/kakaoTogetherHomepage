@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -45,19 +47,50 @@
         </li>
 
         <li class="nav-item justify-content-end">
-          <a class="nav-link" href="#">로그인</a>
+          <a class="nav-link " href="#">로그인</a>
         </li>
 
+
+
       </ul>
+
       <form role="search">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+      <a class="btn btn-secondary my-2 my-sm-0" href="/oauth2/authorization/google" type="submit">google Login</a>
+
+      </form>
+      <form role="search">
+      <a class="btn btn-secondary my-2 my-sm-0 mx-2 bg-green" href="/oauth2/authorization/naver" type="submit">naver Login</a>
+
+      </form>
+      <form role="search">
+
+        <button class="btn btn-secondary mx-2 my-sm-0 " href="/logout" type="submit">Logout</button>
       </form>
 
+      <!--
+            <form class="form-inline my-2 my-lg-0"  th:action="@{/logout}">
+              <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+              <button sec:authorize="isAnonymous()"  href="/oauth2/authorization/google" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Google Login</button>
+            </form>
+
+      -->
     </div>
   </div>
 </nav>
 
 <!-- header 제작 끝-->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--아이콘 시작-->

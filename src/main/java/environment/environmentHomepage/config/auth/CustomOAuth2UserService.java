@@ -1,12 +1,11 @@
 package environment.environmentHomepage.config.auth;
 // 구글 로그인 이후 가져온 사용자 정보(email,name,picture)등을 기반으로 가입 및 정보수정 세션저장등의 기능 지원
 
-
-
 import environment.environmentHomepage.config.auth.dto.OAuthAttributes;
 import environment.environmentHomepage.domain.user.User;
 import environment.environmentHomepage.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -20,7 +19,9 @@ import javax.servlet.http.HttpSession;
 import java.util.Collections;
 
 @RequiredArgsConstructor
+
 @Service
+
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final UserRepository userRepository;
     private final HttpSession httpSession;
