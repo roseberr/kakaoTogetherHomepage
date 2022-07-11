@@ -18,30 +18,27 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=100, nullable = true)
-    private String picture;
 
-    @Column(length=100, nullable = false)
+
+    @Column(nullable = false)
     private String name;
 
 
-    @Column(length=100, nullable = false)
+    @Column(length=30, nullable = false)
     private String email;
 
-    @Column(nullable=false)
-    private LocalDateTime joinDate;
-
+    @Column
+    private String picture;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     @Builder
-    public User(Long id,  String name,String picture ,String email, LocalDateTime joinDate,Role role) {
+    public User(Long id,  String name,String picture ,String email,Role role) {
         this.id = id;
         this.name = name;
         this.picture=picture;
         this.email = email;
-        this.joinDate = joinDate;
         this.role=role;
     }
 
