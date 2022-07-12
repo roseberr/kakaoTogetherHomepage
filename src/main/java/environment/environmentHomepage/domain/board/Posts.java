@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 
-public class Board extends BaseTimeEntity {
+public class Posts extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long board_id;
@@ -50,11 +50,11 @@ public class Board extends BaseTimeEntity {
     @Column(length=500, nullable = false)
     private String enddate;
 
-
+    //최종모금액
     private Long pricestate;
 
     @Builder
-    public Board(User user, long topic, long title, String content, String author, String image, String tag1, String tag2, String tag3, String enddate, Long pricestate) {
+    public Posts(User user, long topic, long title, String content, String author, String image, String tag1, String tag2, String tag3, String enddate, Long pricestate) {
         this.user = user;
         this.topic = topic;
         this.title = title;
