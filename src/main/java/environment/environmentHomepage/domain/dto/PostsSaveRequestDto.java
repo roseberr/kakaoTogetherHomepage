@@ -2,28 +2,32 @@ package environment.environmentHomepage.domain.dto;
 
 
 import environment.environmentHomepage.domain.board.Posts;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
+import java.time.LocalDateTime;
 
 @Getter
+@ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 
 public class PostsSaveRequestDto {
     private long topic;
 
     private long title;
 
-    private String content;
-
     private String author;
+
+    public String category;
+
+
+
+    private Long pricestate;
 
 
     private String image;
+
+    private String content;
 
     private String tag1;
 
@@ -33,11 +37,13 @@ public class PostsSaveRequestDto {
 
     private String enddate;
 
-    private Long pricestate;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
 
     @Builder
-    public PostsSaveRequestDto(long topic, long title, String content, String author, String image, String tag1, String tag2, String tag3, String enddate, Long pricestate) {
+    public PostsSaveRequestDto(long topic, long title, String content, String author, String image,
+                               String tag1, String tag2, String tag3, String enddate, Long pricestate, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.topic = topic;
         this.title = title;
         this.content = content;
@@ -48,6 +54,8 @@ public class PostsSaveRequestDto {
         this.tag3 = tag3;
         this.enddate = enddate;
         this.pricestate = pricestate;
+        this.createdDate=createdDate;
+        this.modifiedDate=modifiedDate;
     }
 
 

@@ -20,15 +20,16 @@ public class PostsApiController {
 
 
     @GetMapping("/api/posts")
-    public String posts(Model model){
-        model.addAttribute("",new PostsSaveRequestDto());
+    public String posts(){
+       //model.addAttribute("",new PostsSaveRequestDto());
         return "/post/register";
     }
 
 // post 등록하기 controller
     @PostMapping("/api/posts")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto){
-        return postsService.save(requestDto);
+    public String save(@RequestBody PostsSaveRequestDto requestDto){
+        postsService.save(new PostsSaveRequestDto());
+        return "redirect:/";
     }
 
 }
