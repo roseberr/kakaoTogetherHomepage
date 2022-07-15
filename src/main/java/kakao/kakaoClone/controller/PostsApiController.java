@@ -1,32 +1,45 @@
 package kakao.kakaoClone.controller;
 
 
-import kakao.kakaoClone.domain.dto.PostsSaveRequestDto;
+import kakao.kakaoClone.config.auth.SessionUser;
+import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
 import kakao.kakaoClone.service.PostsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
-@RestController
+//@RestController
+@Controller
 
 public class PostsApiController {
 
     private final PostsService postsService;
-
+    private final HttpSession httpSession;
 
     @GetMapping("/api/posts")
-    public String posts(){
-       //model.addAttribute("",new PostsSaveRequestDto());
+    public String posts(Model model){
+
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
+
+
         return "/post/register";
     }
 
 // post 등록하기 controller
     @PostMapping("/api/posts")
-    public String save(@RequestBody PostsSaveRequestDto requestDto){
-        postsService.save(new PostsSaveRequestDto());
+    public String save(PostsSaveRequestDto requestDto){
+
+
+        postsService.save(requestDto);
         return "redirect:/";
     }
 

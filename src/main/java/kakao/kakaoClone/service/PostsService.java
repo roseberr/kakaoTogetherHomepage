@@ -2,7 +2,7 @@ package kakao.kakaoClone.service;
 
 
 import kakao.kakaoClone.domain.board.PostsRepository;
-import kakao.kakaoClone.domain.dto.PostsSaveRequestDto;
+import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

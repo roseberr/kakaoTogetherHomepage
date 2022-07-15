@@ -108,6 +108,11 @@
                                 </div>
                             </div>
                             -->
+
+                    <!--<a> login as: <span id="user"   th:text="${userName}"></span></a>-->
+
+
+
                     <div class="col-12">
                         <label for="title" class="form-label"><b>제목</b></label>
                         <input type="title" class="form-control" id="title">
@@ -119,7 +124,9 @@
                         <label for="username" class="form-label  "><b>작성자</b></label>
                         <div class="input-group has-validation">
                             <span class="input-group-text">@</span>
-                            <input type="text " class="form-control " id="username" placeholder="Username" readonly>
+
+                            <input type="text " class="form-control " id="username" readonly placeholder="" >    >
+                            <!--    <span th:text="${userName}"    >  </span>   -->
                             <div class="invalid-feedback">
                                 유효한 작성자를 입력하세요.
                             </div>
@@ -191,7 +198,6 @@
                     <div class="col-12">
                         <label for="content" class="form-label">본문</label>
                         <textarea class="form-control" id="content" rows="10" placeholder="내용을 입력해주세요"></textarea>
-
                     </div>
 
                     <div class="col-12 ">

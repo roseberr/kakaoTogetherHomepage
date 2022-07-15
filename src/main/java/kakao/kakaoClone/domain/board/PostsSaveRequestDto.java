@@ -1,4 +1,4 @@
-package kakao.kakaoClone.domain.dto;
+package kakao.kakaoClone.domain.board;
 
 
 import kakao.kakaoClone.domain.board.Posts;
@@ -41,7 +41,7 @@ public class PostsSaveRequestDto {
 
 
     @Builder
-    public PostsSaveRequestDto(long topic, long title, String content, String author, String image,
+    public PostsSaveRequestDto(long topic, long title, String content, String author, String image,String category,
                                String tag1, String tag2, String tag3, String enddate, Long pricestate, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.topic = topic;
         this.title = title;
@@ -49,6 +49,7 @@ public class PostsSaveRequestDto {
         this.author = author;
         this.image = image;
         this.tag1 = tag1;
+        this.category=category;
         this.tag2 = tag2;
         this.tag3 = tag3;
         this.enddate = enddate;
@@ -68,6 +69,7 @@ public class PostsSaveRequestDto {
                 .tag1(tag1)
                 .tag2(tag2)
                 .tag3(tag3)
+                .pricestate(pricestate)
                 .enddate(enddate)
                 .pricestate(pricestate)
                 .build();

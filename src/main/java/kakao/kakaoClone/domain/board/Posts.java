@@ -18,7 +18,7 @@ public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long board_id;
+    private long board_id;
 
     //@ManyToOne
     //@JoinColumn(name="MEMBER_ID")
