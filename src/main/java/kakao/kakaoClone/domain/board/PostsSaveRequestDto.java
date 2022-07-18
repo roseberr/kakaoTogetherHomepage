@@ -11,20 +11,23 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 
 public class PostsSaveRequestDto {
-    private long topic;
 
-    private long title;
+
+
+
+    private String title;
 
     private String author;
 
-    public String category;
+    public String bigCategory;
+
+    public String smallCategory;
+    private String topic;
+
+    private Long priceState;
 
 
-
-    private Long pricestate;
-
-
-    private String image;
+   // private String image;
 
     private String content;
 
@@ -34,44 +37,47 @@ public class PostsSaveRequestDto {
 
     private String tag3;
 
-    private String enddate;
+    private String endDate;
 
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
 
     @Builder
-    public PostsSaveRequestDto(long topic, long title, String content, String author, String image,String category,
-                               String tag1, String tag2, String tag3, String enddate, Long pricestate, LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        this.topic = topic;
+    public PostsSaveRequestDto(String topic, String title, String author, String bigCategory,
+                               String smallCategory, Long priceState,  String content, String tag1,
+                               String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+
         this.title = title;
-        this.content = content;
         this.author = author;
-        this.image = image;
+        this.bigCategory = bigCategory;
+        this.smallCategory = smallCategory;
+        this.topic = topic;
+        this.priceState = priceState;
+        //this.image = image;
+        this.content = content;
         this.tag1 = tag1;
-        this.category=category;
         this.tag2 = tag2;
         this.tag3 = tag3;
-        this.enddate = enddate;
-        this.pricestate = pricestate;
-        this.createdDate=createdDate;
-        this.modifiedDate=modifiedDate;
+        this.endDate = endDate;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
-
 
     public Posts toEntity() {
         return Posts.builder()
-                .topic(topic)
                 .title(title)
-                .content(content)
                 .author(author)
-                .image(image)
+                .bigCategory(bigCategory)
+                .smallCategory(smallCategory)
+                .topic(topic)
+                .priceState(priceState)
+               // .image(image)
+                .content(content)
                 .tag1(tag1)
                 .tag2(tag2)
                 .tag3(tag3)
-                .pricestate(pricestate)
-                .enddate(enddate)
-                .pricestate(pricestate)
+                .endDate(endDate)
                 .build();
     }
 }

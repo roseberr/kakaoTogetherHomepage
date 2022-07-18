@@ -88,9 +88,10 @@
             <h4><b> 글 등록하기</b></h4>
             </p>
         </div>
+
         <div class="col-md-7 col-lg-6 justify-content-lg-center" style="width: 70%; float:none; margin:0 auto">
             <h4 class="mb-3"></h4>
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" novalidateaction   action="#" th:action="@{/post/register}"  method="post">
                 <div class="row g-3">
                     <!--
                             <div class="col-sm-6">
@@ -110,136 +111,141 @@
                             -->
 
                     <!--<a> login as: <span id="user"   th:text="${userName}"></span></a>-->
+                    <a> "[[${userName}]]"</a>
 
 
-
-                    <div class="col-12">
+                    <div class="col-12 form-group">
                         <label for="title" class="form-label"><b>제목</b></label>
-                        <input type="title" class="form-control" id="title">
+                        <input type="title" class="form-control" id="title" required>
                         <div class="invalid-feedback">
                             유효한 제목을 입력하세요.
                         </div>
                     </div>
-                    <div class="col-12">
+
+                    <div class="col-12 form-group">
                         <label for="username" class="form-label  "><b>작성자</b></label>
                         <div class="input-group has-validation">
                             <span class="input-group-text">@</span>
 
-                            <input type="text " class="form-control " id="username" readonly placeholder="" >    >
-                            <!--    <span th:text="${userName}"    >  </span>   -->
+                            <input type="text " class="form-control " id="username"  placeholder=작성자  >
+                               <!-- <span th:text="${userName}" readonly     </span>   -->
                             <div class="invalid-feedback">
                                 유효한 작성자를 입력하세요.
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12  form-group" >
                         <label for="title" class="form-label"><b>카테고리 분류</b></label>
                     </div>
 
 
-                    <div class="form-check col-sm-auto pt-1">
-                        <input id="donationtogether" name="paymentMethod" type="radio" class="form-check-input" checked
-                               required>
-                        <label class="form-check-label" for="donationtogether">같이 기부</label>
-
+                    <div class="form-check col-sm-auto pt-1 form-group">
+                        <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input" checked
+                               required  value="donationTogether">
+                        <label class="form-check-label" for="donationTogether">같이 기부</label>
                     </div>
 
 
-                    <div class="col-sm-auto col-md-auto">
+                    <div class="col-sm-auto col-md-auto form-group">
 
-                        <select class="form-select " id="category" required>
-                            <option value="">카테고리 선택</option>
-                            <option>모금중</option>
-                            <option>모금후기</option>
+                        <select class="form-select " id="smallCategory" checked required >
+                            <option value="option1">카테고리 선택</option>
+                            <option value="option2">모금중</option>
+                            <option value="option3">모금후기</option>
                         </select>
                         <div class="invalid-feedback">
                             Please select a valid category.
                         </div>
 
-
                     </div>
 
-                    <div class="col-sm-auto  col-md-auto">
-                        <select class="form-select" id="topicSelect" required>
-                            <option value="">주제 선택</option>
-                            <option>어린이</option>
-                            <option>지구촌</option>
+                    <div class="col-sm-auto  col-md-auto form-group">
+                        <select class="form-select" id="topic"  checked required>
+                            <option value="option1">주제선택</option>
+                            <option value="option2">어린이</option>
+                            <option value="option3">지구촌</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Please select a valid category.
+                        </div>
                     </div>
 
 
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback form-group">
                         Please select a valid category.
                     </div>
-                    <div class="form-check">
-                        <input id="promotion" name="paymentMethod" type="radio" class="form-check-input" required>
-                        <label class="form-check-label" for="promotion">프로모션</label>
+
+                    <div class="form-check form-group">
+                        <input id="promotion" name="bigCategory" type="radio" class="form-check-input" required value="promotion">
+                        <label class="form-check-label" for="promotion" >프로모션</label>
                     </div>
 
                     <hr class="my-4">
 
-                    <div class="col-12">
+                    <div class="col-12 form-group">
                         <label for="Target amount" class="form-label">목표 금액</label>
                         <input type="text" class="form-control" id="Target amount" placeholder="단위를 제외한 숫자를 적어주세요"
-                               required>
+                               required >
                         <div class="invalid-feedback">
                             목표금액을 입력하세요
                         </div>
                     </div>
 
 
-                    <div class="col-12">
+                    <div class="col-12 form-group">
                         <label for="thumbnail" class="form-label">썸네일 등록</label>
-                        <input type="file" class="form-control" id="thumbnail" placeholder="Apartment or suite">
+                        <input type="file" name="file" class="form-control" id="thumbnail" placeholder="Apartment or suite">
+                        <!--th:field="*{image}"-->
                     </div>
 
 
-                    <div class="col-12">
+                    <div class="col-12 form-group">
                         <label for="content" class="form-label">본문</label>
-                        <textarea class="form-control" id="content" rows="10" placeholder="내용을 입력해주세요"></textarea>
+                        <textarea class="form-control" id="content" rows="10"  required placeholder="내용을 입력해주세요"></textarea>
                     </div>
 
-                    <div class="col-12 ">
-                        <label for="tag1" class="form-label">태그 설정</label>
+                    <div class="col-12 form-group">
+                        <label for="tag1" class="form-label" >태그 설정</label>
                     </div>
 
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 form-group">
 
-                        <input class="form-control" id="tag1" placeholder="태그1(필수)"required>
+                        <input class="form-control" id="tag1" placeholder="태그1(필수)"required >
                         <div class="invalid-feedback">
                             태그를 입력하세요
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 form-group">
 
-                        <input class="form-control" id="tag2" placeholder="태그2(선택)"required>
-
-                    </div>
-
-                    <div class="col-md-4">
-
-                        <input class="form-control" id="tag3" placeholder="태그3(선택)"required>
+                        <input class="form-control" id="tag2" placeholder="태그2(선택)">
 
                     </div>
 
+                    <div class="col-md-4 form-group">
+
+                        <input class="form-control" id="tag3" placeholder="태그3(선택)">
+
+                    </div>
 
 
 
 
-                    <div class="col-12">
+
+                    <div class="col-12 form-group">
                         <label for="endDate" class="form-label">종료일</label>
-                        <input type="date" class="form-control" id="endDate" placeholder="종료일을 선택해주세요" required>
+                        <input type="date" class="form-control" id="endDate" placeholder="종료일을 선택해주세요" required >
                         <div class="invalid-feedback">
                             종료일을 입력하세요
                         </div>
                     </div>
 
 
-                    <hr class="my-4">
-                    <button class="w-100 btn btn-dark btn-lg" type="submit">등록하세요</button>
+                    <hr class="my-4 ">
+
+                    <button class="w-100 btn btn-dark btn-lg" type="submit" >등록하세요</button>
                     <br>
                     <br>
 

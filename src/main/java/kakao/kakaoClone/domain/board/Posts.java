@@ -24,16 +24,17 @@ public class Posts extends BaseTimeEntity {
     //@JoinColumn(name="MEMBER_ID")
     //private User user;
 
-
     @Column(length=100, nullable = false)
-    private long topic;
+    private String bigCategory;     //같이기부 프로모션
 
     @Column
-    private long category;
+    private String smallCategory;  // 카테고리선택
 
+    @Column
+    private String topic;  //같이기부시 카테고리선택
 
     @Column(length=500, nullable = false)
-    private long title;
+    private String title;
 
     @Column(columnDefinition = "TEXT",nullable = false)
     private String content;
@@ -43,8 +44,8 @@ public class Posts extends BaseTimeEntity {
     private String author;
 
 
-    @Column(length=500, nullable = false)
-    private String image;
+  //  @Column(length=500, nullable = false)
+ //   private String image;
     @Column(length=50, nullable = false)
     private String tag1;
 
@@ -54,24 +55,29 @@ public class Posts extends BaseTimeEntity {
 
 
     @Column(length=500, nullable = false)
-    private String enddate;
+    private String endDate;
 
     //최종모금액
-    private Long pricestate;
+    private Long priceState;
 
     @Builder
-    public Posts( long topic, long category ,long title, String content, String author, String image, String tag1, String tag2, String tag3, String enddate, Long pricestate) {
-
-        this.topic = topic;
-        this.category=category;
+    public Posts(String topic, String bigCategory , String smallCategory, String title, String content, String author,  String tag1, String tag2, String tag3, String endDate, Long priceState) {
         this.title = title;
-        this.content = content;
         this.author = author;
-        this.image = image;
+
+        this.bigCategory=bigCategory;
+        this.smallCategory=smallCategory;
+        this.topic = topic;
+        this.endDate = endDate;
+
+      //  this.image = image;
+        this.content = content;
+
         this.tag1 = tag1;
         this.tag2 = tag2;
         this.tag3 = tag3;
-        this.enddate = enddate;
-        this.pricestate = pricestate;
+
+        this.priceState = priceState;
+
     }
 }
