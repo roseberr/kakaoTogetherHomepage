@@ -21,11 +21,11 @@ public class PostsApiController {
     private final PostsService postsService;
     private final HttpSession httpSession;
 
-    @GetMapping("/posts")
+    @GetMapping("/api/post")
     public String posts(Model model){
 
 
-        //model.addAttribute("requestDto",new PostsSaveRequestDto());
+        model.addAttribute("requestDto",new PostsSaveRequestDto());
         //SessionUser user=(SessionUser) httpSession.getAttribute("user");
 
         //if (user!=null){
@@ -37,10 +37,10 @@ public class PostsApiController {
 
 // post 등록하기 controller
 
-    @PostMapping("/posts")
+    @PostMapping("/api/post")
     public String save(@ModelAttribute  PostsSaveRequestDto requestDto){
 
-       // postsService.save(requestDto);
+        postsService.save(requestDto);
         return "/post/register";
     }
 
