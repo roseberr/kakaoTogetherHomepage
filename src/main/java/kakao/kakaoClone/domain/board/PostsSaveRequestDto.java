@@ -1,7 +1,6 @@
 package kakao.kakaoClone.domain.board;
 
 
-import kakao.kakaoClone.domain.board.Posts;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -9,10 +8,8 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @NoArgsConstructor
-
+@Setter
 public class PostsSaveRequestDto {
-
-
 
 
     private String title;
@@ -48,6 +45,7 @@ public class PostsSaveRequestDto {
                                String smallCategory, Long priceState,  String content, String tag1,
                                String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate) {
 
+        System.out.println(" PostsSaveRequestDto start");
         this.title = title;
         this.author = author;
         this.bigCategory = bigCategory;
@@ -62,10 +60,15 @@ public class PostsSaveRequestDto {
         this.endDate = endDate;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
+
+        System.out.println(" PostsSaveRequestDto 생성자 end");
+
     }
 
     public Posts toEntity() {
-        return Posts.builder()
+
+        System.out.println(" PostsSaveRequestDto to entity start");
+        Posts post=Posts.builder()
                 .title(title)
                 .author(author)
                 .bigCategory(bigCategory)
@@ -79,5 +82,6 @@ public class PostsSaveRequestDto {
                 .tag3(tag3)
                 .endDate(endDate)
                 .build();
+        return post;
     }
 }
