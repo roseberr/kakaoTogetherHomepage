@@ -24,7 +24,7 @@ public class PostsSaveRequestDto {
     private Long priceState;
 
 
-   // private String image;
+  //  private String image;
 
     private String content;
 
@@ -52,7 +52,7 @@ public class PostsSaveRequestDto {
         this.smallCategory = smallCategory;
         this.topic = topic;
         this.priceState = priceState;
-        //this.image = image;
+     //   this.image = image;
         this.content = content;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -75,7 +75,7 @@ public class PostsSaveRequestDto {
                 .smallCategory(smallCategory)
                 .topic(topic)
                 .priceState(priceState)
-               // .image(image)
+             //   .image(image)
                 .content(content)
                 .tag1(tag1)
                 .tag2(tag2)

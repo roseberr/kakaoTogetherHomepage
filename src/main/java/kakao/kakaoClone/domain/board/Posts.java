@@ -44,8 +44,8 @@ public class Posts extends BaseTimeEntity {
     private String author;
 
 
-  //  @Column(length=500, nullable = false)
- //   private String image;
+   // @Column(length=500)
+   // private String image;
     @Column(length=50, nullable = false)
     private String tag1;
 
@@ -70,7 +70,7 @@ public class Posts extends BaseTimeEntity {
         this.topic = topic;
         this.endDate = endDate;
 
-      //  this.image = image;
+       // this.image = image;
         this.content = content;
 
         this.tag1 = tag1;
