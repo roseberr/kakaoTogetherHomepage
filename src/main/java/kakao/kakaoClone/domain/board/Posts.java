@@ -44,8 +44,14 @@ public class Posts extends BaseTimeEntity {
     private String author;
 
 
-   // @Column(length=500)
-   // private String image;
+    @Column(length=500)
+    private String filename;
+
+    @Column(length=500)
+    private String filepath;
+
+
+
     @Column(length=50, nullable = false)
     private String tag1;
 
@@ -61,7 +67,9 @@ public class Posts extends BaseTimeEntity {
     private Long priceState;
 
     @Builder
-    public Posts(String topic, String bigCategory , String smallCategory, String title, String content, String author,  String tag1, String tag2, String tag3, String endDate, Long priceState) {
+    public Posts(String topic, String bigCategory , String smallCategory, String title,
+                 String content, String author,  String tag1, String tag2, String tag3,
+                 String endDate, Long priceState, String filename,String filepath) {
         this.title = title;
         this.author = author;
 
@@ -78,6 +86,9 @@ public class Posts extends BaseTimeEntity {
         this.tag3 = tag3;
 
         this.priceState = priceState;
+
+        this.filename=filename;
+        this.filepath=filepath;
 
     }
 }

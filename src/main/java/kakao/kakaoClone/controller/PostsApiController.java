@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.naming.Binding;
 import javax.servlet.http.HttpSession;
@@ -72,13 +73,20 @@ public class PostsApiController {
     }*/
 
     @PostMapping("/api/post")
-    public String save(@ModelAttribute PostsSaveRequestDto requestDto) {
+    public String save(@ModelAttribute PostsSaveRequestDto requestDto, MultipartFile file) throws Exception {
 
             System.out.println("post start");
 
-            postsService.save(requestDto);
 
-            System.out.println("post end");
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+
+        if (user!=null){
+            requestDto.setAuthor(user.getName());
+        }
+        postsService.save(requestDto,file);
+
+
+        System.out.println("post end");
 
             return "redirect:/";
     }

@@ -24,7 +24,9 @@ public class PostsSaveRequestDto {
     private Long priceState;
 
 
-  //  private String image;
+    private String filepath;
+
+    private String filename;
 
     private String content;
 
@@ -42,8 +44,9 @@ public class PostsSaveRequestDto {
 
     @Builder
     public PostsSaveRequestDto(String topic, String title, String author, String bigCategory,
-                               String smallCategory, Long priceState,  String content, String tag1,
-                               String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+                               String smallCategory, Long priceState, String content, String tag1,
+                               String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate,
+                               String filepath,String filename) {
 
         System.out.println(" PostsSaveRequestDto start");
         this.title = title;
@@ -52,7 +55,7 @@ public class PostsSaveRequestDto {
         this.smallCategory = smallCategory;
         this.topic = topic;
         this.priceState = priceState;
-     //   this.image = image;
+        //   this.image = image;
         this.content = content;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -60,7 +63,8 @@ public class PostsSaveRequestDto {
         this.endDate = endDate;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
-
+        this.filename=filename;
+        this.filepath=filepath;
         System.out.println(" PostsSaveRequestDto 생성자 end");
 
     }
@@ -68,19 +72,21 @@ public class PostsSaveRequestDto {
     public Posts toEntity() {
 
         System.out.println(" PostsSaveRequestDto to entity start");
-        Posts post=Posts.builder()
+        Posts post = Posts.builder()
                 .title(title)
                 .author(author)
                 .bigCategory(bigCategory)
                 .smallCategory(smallCategory)
                 .topic(topic)
                 .priceState(priceState)
-             //   .image(image)
+                //   .image(image)
                 .content(content)
                 .tag1(tag1)
                 .tag2(tag2)
                 .tag3(tag3)
                 .endDate(endDate)
+                .filename(filename)
+                .filepath(filepath)
                 .build();
         return post;
     }
