@@ -3,6 +3,7 @@ package kakao.kakaoClone.controller;
 
 import kakao.kakaoClone.config.auth.SessionUser;
 import kakao.kakaoClone.domain.board.Posts;
+import kakao.kakaoClone.domain.board.PostsRepository;
 import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
 import kakao.kakaoClone.service.PostsService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @RequiredArgsConstructor
 //@RestController
 @Controller
@@ -30,6 +33,7 @@ import java.util.List;
 
 public class PostsApiController {
 
+    private final PostsRepository postsRepository;
     private final PostsService postsService;
     private final HttpSession httpSession;
 
@@ -90,4 +94,51 @@ public class PostsApiController {
 
             return "redirect:/";
     }
+
+
+    @GetMapping("/api/post/list/{board_id}")
+    public Posts one(@PathVariable Long board_id) {
+
+
+
+        System.out.println("/api/post/list/{board_id} 수정하기 화면 시작");
+
+        return postsRepository.findById(board_id).orElse(null);
+    }
+
+    @PutMapping("/api/post/list/{board_id}")// 수정하기
+    public Posts replaceEmployee(@RequestBody Posts newPost, @PathVariable Long id) {
+
+        return postsRepository.findById(id)
+                .map(post -> {
+                    post.setTopic(newPost.getTopic());
+                    post.setBigCategory(newPost.getBigCategory());
+                    post.setSmallCategory(newPost.getSmallCategory());
+                    post.setTitle(newPost.getTitle());
+                    post.setContent(newPost.getTitle());
+                    post.setTag1(newPost.getTag1());
+                    post.setTag2(newPost.getTag2());
+                    post.setTag3(newPost.getTag3());
+                    post.setEndDate(newPost.getEndDate());
+                    post.setPriceState(newPost.getPriceState());
+
+                    return postsRepository.save(newPost);
+                })
+                .orElseGet(() -> {
+                    newPost.setBoard_id(id);
+                    return postsRepository.save(newPost);
+                });
+    }
+    @DeleteMapping("/api/post/list/{board_id}")// 삭제하기
+    void deletePost(@PathVariable Long board_id){
+        postsRepository.deleteById(board_id);
+
+    }
+
 }
+/*
+String topic, String bigCategory , String smallCategory, String title,
+                 String content, String author,  String tag1, String tag2, String tag3,
+                 String endDate, Long priceState,
+
+ */
