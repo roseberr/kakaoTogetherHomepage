@@ -95,6 +95,30 @@ public class PostsApiController {
             return "redirect:/";
     }
 
+    @GetMapping("/api/post/form")
+    public String form(Model model, @RequestParam(required = false) Long id){
+
+        System.out.println("from controller getmapping start");
+        if(id==null){
+            model.addAttribute("post",new Posts());
+        }else{
+            Posts post=postsRepository.findById(id).orElse(null);
+            model.addAttribute("post",post);
+
+        }
+        System.out.println("from controller getmapping end");
+        return "post/postform.html";
+
+
+    }
+
+
+
+
+
+
+
+
 
     @GetMapping("/api/post/list/{board_id}")
     public Posts one(@PathVariable Long board_id) {
