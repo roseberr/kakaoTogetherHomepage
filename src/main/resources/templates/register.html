@@ -91,7 +91,8 @@
 
         <div class="col-md-7 col-lg-6 justify-content-lg-center" style="width: 70%; float:none; margin:0 auto">
             <h4 class="mb-3"></h4>
-            <form class="needs-validation" novalidateaction action="#" th:action="@{/api/post}" method="post" enctype="multipart/form-data">
+            <form class="needs-validation" novalidateaction action="#" th:action="@{/api/post}" method="post"
+                  enctype="multipart/form-data">
                 <div class="row g-3">
                     <!--
                             <div class="col-sm-6">
@@ -111,7 +112,7 @@
                             -->
 
                     <!--<a> login as: <span id="user"   th:text="${userName}"></span></a>-->
-                  <!--  <a> "[[${userName}]]"</a>-->
+                    <!--  <a> "[[${userName}]]"</a>-->
 
 
                     <div class="col-12 form-group">
@@ -127,7 +128,8 @@
                         <div class="input-group has-validation">
                             <span class="input-group-text">@</span>
 
-                            <input type="text " class="form-control " id="username" readonly name="author"  th:placeholder="${userName}">
+                            <input type="text " class="form-control " id="username" readonly name="author"
+                                   th:placeholder="${userName}">
                             <!-- <span th:text="${userName}" readonly     </span>   placeholder=작성자-->
                             <div class="invalid-feedback">
                                 유효한 작성자를 입력하세요.
@@ -172,7 +174,7 @@
                     </div>
 
 
-                    <div class="form-check form-group">
+                    <div class="form-check form-group" >
                         <input id="promotion" name="bigCategory" type="radio" class="form-check-input" required
                                value="promotion">
                         <label class="form-check-label" for="promotion">프로모션</label>
@@ -189,6 +191,9 @@
                             목표금액을 입력하세요
                         </div>
                     </div>
+
+
+
 
 
                     <div class="col-12 form-group">
@@ -243,7 +248,7 @@
                     <hr class="my-4 ">
 
 
-                   <!-- <a class="btn btn-secondary my-2 my-sm-0 mx-2" href="/">메인화면으로</a>-->
+                    <!-- <a class="btn btn-secondary my-2 my-sm-0 mx-2" href="/">메인화면으로</a>-->
 
                     <input type="submit" class="btn btn-dark btn-lg"></input>
 
@@ -267,10 +272,10 @@
             </ul>
         </footer>
         -->
-</div>
 
-<br>
-<br>
+
+    <br>
+    <br>
 
 
 </body>
