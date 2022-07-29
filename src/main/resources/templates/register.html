@@ -11,6 +11,7 @@
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
             crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <!-- 등록하기 header  -->
@@ -142,17 +143,17 @@
                     </div>
 
 
-                    <div class="form-check col-sm-auto pt-1 form-group">
-                        <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input" checked
+                    <div class="form-check col-sm-auto pt-1 form-group mb-3">
+                        <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input"
                                required value="donationTogether" onchange="setDisplay()">
                         <label class="form-check-label" for="donationTogether">같이 기부</label>
                     </div>
 
 
-                    <div class="col-sm-auto col-md-auto form-group" id="category1">
+                    <div class="col-sm-auto col-md-auto form-group " id="category1" style="display:none;">
 
                         <select class="form-select " id="smallCategory" checked required name="smallCategory"
-                                onchange="setDisplay()">
+                        >
                             <option value="option1">카테고리 선택</option>
                             <option value="option2">모금중</option>
                             <option value="option3">모금후기</option>
@@ -163,8 +164,8 @@
 
                     </div>
 
-                    <div class="col-sm-auto  col-md-auto form-group" id="category2">
-                        <select class="form-select" id="topic" checked required name="topic" onchange="setDisplay()">
+                    <div class="col-sm-auto  col-md-auto form-group" id="category2" style="display:none;">
+                        <select class="form-select" id="topic" checked required name="topic">
                             <option value="option1">주제선택</option>
                             <option value="option2">어린이</option>
                             <option value="option3">지구촌</option>
@@ -175,32 +176,12 @@
                     </div>
 
 
-                    <div class="form-check form-group">
+                    <div class="form-check form-group ">
                         <input id="promotion" name="bigCategory" type="radio" class="form-check-input" required
                                value="promotion" onchange="setDisplay()">
                         <label class="form-check-label" for="promotion">프로모션</label>
                     </div>
-                    <div id="category3">사라지나 안사라지나</div>
 
-
-                    <script>
-                    function setDisplay(){
-                        if($('input:radio[id=promotion]').is(':checked')){
-                            $('#category1').hide();
-                            $('#category2').hide();
-                            $('#category3').hide();
-                        }else{
-                            $('#catetory1').show();
-                            $('#category2').show();
-                            $('#catetory3').show();
-
-                         }
-                        }
-
-
-
-
-                    </script>
 
 
                     <hr class="my-3">
@@ -295,10 +276,29 @@
     </main>
 
 
-
     <br>
     <br>
 </div>
+
+
+<!-- 같이기부 카테고리분류 jQuery hide and show-->
+<script>
+                    function setDisplay(){
+                        if($('input:radio[id=promotion]').is(':checked')){
+                            $('#category1').hide();
+                            $('#category2').hide();
+
+
+                        }else{
+                            $('#category1').show();
+                            $('#category2').show();
+                        }
+}
+
+
+</script>
+<!-- 같이기부 카테고리분류 jQuery hide and show-->
+
 
 </body>
 </html>
