@@ -1,14 +1,297 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <link rel="stylesheet" type="text/css" href="reset.css">
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--<script src="https://cdn.tailwindcss.com"></script>-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+          crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <style>
+    @media (min-width: 768px){.container
+    {width: 750px;}}
+    @media (min-width: 992px) {.container { width: 940px; }}
+    @media (min-width: 1200px) { .container { width: 1200px; }}
+
+    </style>
 </head>
+
 <body>
-<div class="img">
-  <div class="content">
-    <h1>Hello!</h1>
-    <h2>My name is nunu</h2>
-  </div>
-  <div class="img-cover"></div>
+<!--                           header                          -->
+
+
+<!--                           header                          -->
+
+
+<div class="container mt-1 ">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a class="navbar-brand" href="#"> <h4><b>솔찬의 우리같이</b></h4></a>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ">
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle
+px-2 link-dark" href="#" id="dropdown07XL" data-bs-toggle="dropdown"
+           aria-expanded="false">같이기부</a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
+          <li><a class="dropdown-item"  href="/index">전체</a></li>
+          <li><a class="dropdown-item" href="#">모금중</a></li>
+          <li><a class="dropdown-item" href="#">모금후기</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle
+px-2 link-dark" href="#" id="dropdown07XK" data-bs-toggle="dropdown"
+           aria-expanded="false">프로모션</a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
+          <li><a class="dropdown-item" href="#">전체</a></li>
+          <li><a class="dropdown-item" href="#">진행중</a></li>
+          <li><a class="dropdown-item" href="#">종료</a></li>
+        </ul>
+      </li>
+      <li class="nav-item justify-content-end
+">
+        <a class="nav-link
+px-2 link-dark" href="#">더보기</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link
+px-2 link-dark" href="#">Contact</a>
+      </li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+      <form role="search">
+        <a type="submit"   style="border:none;background-color:white;" class="btn-image" id="google_button" href="/oauth2/authorization/google" ><img  src="/icons/google1.svg" width="35" height="35"></a>
+
+        <a type="submit"  style="border:none;background-color:white;" class="btn-image" id="naver_button" href="/oauth2/authorization/naver" ><img  src="/icons/naver1.png" width="35" height="35"></a>
+      </form>
+    </div>
+  </header>
+</div>
+
+
+
+
+<!--                           header                          -->
+
+
+
+
+
+
+
+
+<div class="container  ">
+  <main>
+    <div class="py-4 text-left  " style="width: 70%; float:none; margin:0 auto">
+      <!--<img class="d-block mx-auto mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+      <!-- <h2>Checkout form</h2>-->
+      <p class="lead ">
+      <h4><b> 글 등록하기</b></h4>
+      </p>
+    </div>
+
+    <div class="col-md-7 col-lg-6 justify-content-lg-center" style="width: 70%; float:none; margin:0 auto">
+      <h4 class="mb-3"></h4>
+      <form class="needs-validation" novalidateaction action="#" th:action="@{/api/post}" method="post"
+            enctype="multipart/form-data">
+        <div class="row g-3">
+          <!--
+                  <div class="col-sm-6">
+                      <label for="firstName" class="form-label">First name</label>
+                      <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                          유효한 이름이 필요합니다.
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <label for="lastName" class="form-label">Last name</label>
+                      <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                          Valid last name is required.
+                      </div>
+                  </div>
+                  -->
+
+          <!--<a> login as: <span id="user"   th:text="${userName}"></span></a>-->
+          <!--  <a> "[[${userName}]]"</a>-->
+
+
+          <div class="col-12 form-group">
+            <label for="title" class="form-label"><b>제목</b></label>
+            <input type="title" class="form-control" id="title" name="title" required>
+            <div class="invalid-feedback">
+              유효한 제목을 입력하세요.
+            </div>
+          </div>
+
+          <div class="col-12 form-group">
+            <label for="username" class="form-label  "><b>작성자</b></label>
+            <div class="input-group has-validation">
+              <span class="input-group-text">@</span>
+
+              <input type="text " class="form-control " id="username" readonly name="author"
+                     th:placeholder="${userName}">
+              <!-- <span th:text="${userName}" readonly     </span>   placeholder=작성자-->
+              <div class="invalid-feedback">
+                유효한 작성자를 입력하세요.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12  form-group">
+            <label for="title" class="form-label"><b>카테고리 분류</b></label>
+          </div>
+
+
+          <div class="form-check col-sm-auto pt-1 form-group mb-3">
+            <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input"
+                   required value="donationTogether" onchange="setDisplay()">
+            <label class="form-check-label" for="donationTogether">같이 기부</label>
+          </div>
+
+
+          <div class="col-sm-auto col-md-auto form-group " id="category1" style="display:none;">
+
+            <select class="form-select " id="smallCategory" checked required name="smallCategory"
+            >
+              <option value="option1">카테고리 선택</option>
+              <option value="option2">모금중</option>
+              <option value="option3">모금후기</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid category.
+            </div>
+
+          </div>
+
+          <div class="col-sm-auto  col-md-auto form-group" id="category2" style="display:none;">
+            <select class="form-select" id="topic" checked required name="topic">
+              <option value="option1">주제선택</option>
+              <option value="option2">어린이</option>
+              <option value="option3">지구촌</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid category.
+            </div>
+          </div>
+
+
+          <div class="form-check form-group ">
+            <input id="promotion" name="bigCategory" type="radio" class="form-check-input" required
+                   value="promotion" onchange="setDisplay()">
+            <label class="form-check-label" for="promotion">프로모션</label>
+          </div>
+
+
+
+          <hr class="my-3">
+
+          <div class="col-12 form-group">
+            <label for="currentPrice" class="form-label">현재 모금액</label>
+            <input type="text" class="form-control" id="currentPrice" name="currentPrice"
+                   placeholder="단위를 제외한 숫자를 적어주세요"
+                   required>
+            <div class="invalid-feedback">
+              현재모금액을 입력하세요
+            </div>
+          </div>
+
+
+          <div class="col-12 form-group">
+            <label for="endPrice" class="form-label">목표 금액</label>
+            <input type="text" class="form-control" id="endPrice" name="endPrice"
+                   placeholder="단위를 제외한 숫자를 적어주세요"
+                   required>
+            <div class="invalid-feedback">
+              목표금액을 입력하세요
+            </div>
+          </div>
+
+
+          <div class="col-12 form-group">
+            <label for="file" class="form-label">썸네일 등록</label>
+            <input type="file" name="file" class="form-control" id="file" placeholder="image">
+            <!--th:field="*{image}"-->
+          </div>
+
+
+          <div class="col-12 form-group">
+            <label for="content" class="form-label">본문</label>
+            <textarea class="form-control" id="content" rows="10" name="content" required
+                      placeholder="내용을 입력해주세요"></textarea>
+          </div>
+
+          <div class="col-12 form-group">
+            <label for="tag1" class="form-label">태그 설정</label>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+
+            <input class="form-control" id="tag1" placeholder="태그1(필수)" required name="tag1">
+            <div class="invalid-feedback">
+              태그를 입력하세요
+            </div>
+          </div>
+
+          <div class="col-md-4 form-group">
+
+            <input class="form-control" id="tag2" placeholder="태그2(선택)" name="tag2">
+
+          </div>
+
+          <div class="col-md-4 form-group">
+
+            <input class="form-control" id="tag3" placeholder="태그3(선택)" name="tag3">
+
+          </div>
+
+
+          <div class="col-12 form-group">
+            <label for="endDate" class="form-label">종료일</label>
+            <input type="date" class="form-control" id="endDate" placeholder="종료일을 선택해주세요" required
+                   name="endDate">
+            <div class="invalid-feedback">
+              종료일을 입력하세요
+            </div>
+          </div>
+
+
+          <hr class="my-4 ">
+
+
+          <!-- <a class="btn btn-secondary my-2 my-sm-0 mx-2" href="/">메인화면으로</a>-->
+
+          <input type="submit" class="btn btn-dark btn-lg"></input>
+
+          <br>
+          <br>
+
+          <br>
+        </div>
+      </form>
+
+    </div>
+
+  </main>
+
+
+  <br>
+  <br>
+</div>
+
+
+
+
+
+
 </div>
 </body>
 </html>
