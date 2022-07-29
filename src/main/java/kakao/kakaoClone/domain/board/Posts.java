@@ -1,10 +1,12 @@
 package kakao.kakaoClone.domain.board;
 
+import com.sun.istack.NotNull;
 import kakao.kakaoClone.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -65,12 +67,18 @@ public class Posts extends BaseTimeEntity {
     private String endDate;
 
     //최종모금액
-    private Long priceState;
+    @Column(nullable = false)
+    private Long endPrice;
+
+    //현재 모금액
+
+    @Column(nullable = false)
+    private Long currentPrice;
 
     @Builder
     public Posts(String topic, String bigCategory , String smallCategory, String title,
-                 String content, String author,  String tag1, String tag2, String tag3,
-                 String endDate, Long priceState, String filename,String filepath) {
+                 String content, String author, String tag1, String tag2, String tag3,
+                 String endDate, Long endPrice,Long currentPrice, String filename, String filepath) {
         this.title = title;
         this.author = author;
 
@@ -86,7 +94,8 @@ public class Posts extends BaseTimeEntity {
         this.tag2 = tag2;
         this.tag3 = tag3;
 
-        this.priceState = priceState;
+        this.endPrice = endPrice;
+        this.currentPrice=currentPrice;
 
         this.filename=filename;
         this.filepath=filepath;

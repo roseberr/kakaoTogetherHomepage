@@ -144,14 +144,15 @@
 
                     <div class="form-check col-sm-auto pt-1 form-group">
                         <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input" checked
-                               required value="donationTogether">
+                               required value="donationTogether" onchange="setDisplay()">
                         <label class="form-check-label" for="donationTogether">같이 기부</label>
                     </div>
 
 
-                    <div class="col-sm-auto col-md-auto form-group">
+                    <div class="col-sm-auto col-md-auto form-group" id="category1">
 
-                        <select class="form-select " id="smallCategory" checked required name="smallCategory">
+                        <select class="form-select " id="smallCategory" checked required name="smallCategory"
+                                onchange="setDisplay()">
                             <option value="option1">카테고리 선택</option>
                             <option value="option2">모금중</option>
                             <option value="option3">모금후기</option>
@@ -162,8 +163,8 @@
 
                     </div>
 
-                    <div class="col-sm-auto  col-md-auto form-group">
-                        <select class="form-select" id="topic" checked required name="topic">
+                    <div class="col-sm-auto  col-md-auto form-group" id="category2">
+                        <select class="form-select" id="topic" checked required name="topic" onchange="setDisplay()">
                             <option value="option1">주제선택</option>
                             <option value="option2">어린이</option>
                             <option value="option3">지구촌</option>
@@ -174,26 +175,56 @@
                     </div>
 
 
-                    <div class="form-check form-group" >
+                    <div class="form-check form-group">
                         <input id="promotion" name="bigCategory" type="radio" class="form-check-input" required
-                               value="promotion">
+                               value="promotion" onchange="setDisplay()">
                         <label class="form-check-label" for="promotion">프로모션</label>
                     </div>
+                    <div id="category3">사라지나 안사라지나</div>
 
-                    <hr class="my-4">
+
+                    <script>
+                    function setDisplay(){
+                        if($('input:radio[id=promotion]').is(':checked')){
+                            $('#category1').hide();
+                            $('#category2').hide();
+                            $('#category3').hide();
+                        }else{
+                            $('#catetory1').show();
+                            $('#category2').show();
+                            $('#catetory3').show();
+
+                         }
+                        }
+
+
+
+
+                    </script>
+
+
+                    <hr class="my-3">
 
                     <div class="col-12 form-group">
-                        <label for="priceState" class="form-label">목표 금액</label>
-                        <input type="text" class="form-control" id="priceState" name="priceState"
+                        <label for="currentPrice" class="form-label">현재 모금액</label>
+                        <input type="text" class="form-control" id="currentPrice" name="currentPrice"
+                               placeholder="단위를 제외한 숫자를 적어주세요"
+                               required>
+                        <div class="invalid-feedback">
+                            현재모금액을 입력하세요
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 form-group">
+                        <label for="endPrice" class="form-label">목표 금액</label>
+                        <input type="text" class="form-control" id="endPrice" name="endPrice"
                                placeholder="단위를 제외한 숫자를 적어주세요"
                                required>
                         <div class="invalid-feedback">
                             목표금액을 입력하세요
                         </div>
                     </div>
-
-
-
 
 
                     <div class="col-12 form-group">
@@ -262,21 +293,12 @@
         </div>
 
     </main>
-    <!--
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2017–2022 Company Name</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
-            </ul>
-        </footer>
-        -->
+
 
 
     <br>
     <br>
-
+</div>
 
 </body>
 </html>

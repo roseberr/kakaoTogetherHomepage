@@ -21,7 +21,8 @@ public class PostsSaveRequestDto {
     public String smallCategory;
     private String topic;
 
-    private Long priceState;
+    private Long currentPrice;
+    private Long endPrice;
 
 
     private String filepath;
@@ -44,9 +45,9 @@ public class PostsSaveRequestDto {
 
     @Builder
     public PostsSaveRequestDto(String topic, String title, String author, String bigCategory,
-                               String smallCategory, Long priceState, String content, String tag1,
+                               String smallCategory,Long currentPrice, Long endPrice, String content, String tag1,
                                String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate,
-                               String filepath,String filename) {
+                               String filepath, String filename) {
 
         System.out.println(" PostsSaveRequestDto start");
         this.title = title;
@@ -54,7 +55,8 @@ public class PostsSaveRequestDto {
         this.bigCategory = bigCategory;
         this.smallCategory = smallCategory;
         this.topic = topic;
-        this.priceState = priceState;
+        this.currentPrice=currentPrice;
+        this.endPrice = endPrice;
         //   this.image = image;
         this.content = content;
         this.tag1 = tag1;
@@ -78,7 +80,8 @@ public class PostsSaveRequestDto {
                 .bigCategory(bigCategory)
                 .smallCategory(smallCategory)
                 .topic(topic)
-                .priceState(priceState)
+                .currentPrice(currentPrice)
+                .endPrice(endPrice)
                 //   .image(image)
                 .content(content)
                 .tag1(tag1)

@@ -7,24 +7,13 @@ import kakao.kakaoClone.domain.board.PostsRepository;
 import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
 import kakao.kakaoClone.service.PostsService;
 import lombok.RequiredArgsConstructor;
-import org.h2.api.Aggregate;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.naming.Binding;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RequiredArgsConstructor
 //@RestController
@@ -144,7 +133,7 @@ public class PostsApiController {
                     post.setTag2(newPost.getTag2());
                     post.setTag3(newPost.getTag3());
                     post.setEndDate(newPost.getEndDate());
-                    post.setPriceState(newPost.getPriceState());
+                    post.setEndPrice(newPost.getEndPrice());
 
                     return postsRepository.save(newPost);
                 })
