@@ -38,7 +38,7 @@ public class PostsApiController {
         }
 
         System.out.println("mapping end");
-        return "register.html";
+        return "post/register.html";
     }
 
 // post 등록하기 controller

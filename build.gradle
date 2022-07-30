@@ -28,7 +28,7 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 	//implementation('org.springframework.session::spring-session-jdbc')
-
+	implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
 }
 
 tasks.named('test') {
