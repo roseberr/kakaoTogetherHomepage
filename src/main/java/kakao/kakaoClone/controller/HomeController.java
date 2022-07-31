@@ -23,7 +23,7 @@ public class HomeController {
     private final PostsRepository postsRepository;
     @GetMapping("/")
     public String index(Model model){
-        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+           SessionUser user=(SessionUser) httpSession.getAttribute("user");
         if (user!=null){
             model.addAttribute("userName",user.getName());
         }

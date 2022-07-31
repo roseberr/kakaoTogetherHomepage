@@ -7,6 +7,7 @@ import kakao.kakaoClone.domain.board.PostsRepository;
 import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
 import kakao.kakaoClone.service.PostsService;
 import lombok.RequiredArgsConstructor;
+import org.h2.engine.Session;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class PostsApiController {
     @GetMapping("/api/post")
     public String posts(Model model) {
 
-         System.out.println("mapping start");
+        System.out.println("mapping start");
         model.addAttribute("requestDto",new PostsSaveRequestDto());
         SessionUser user=(SessionUser) httpSession.getAttribute("user");
 
@@ -41,34 +42,10 @@ public class PostsApiController {
         return "post/register.html";
     }
 
-// post 등록하기 controller
-/*
-    @PostMapping("/api/post")
-    public ResponseEntity<?> save(@Validated @ModelAttribute PostsSaveRequestDto requestDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-
-            System.out.println("post start");
-            final List<String> errors=new ArrayList<>();
-
-            errors.add(bindingResult.toString());
-            for (final FieldError error :bindingResult.getFieldErrors()){
-             errors.add(error.getField()+":"+error.getDefaultMessage()) ;
-             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-            }
-
-            postsService.save(requestDto);
-
-            System.out.println("post end");
-            //return "/post/register";
-        }
-
-        return new ResponseEntity<>(requestDto,HttpStatus.CREATED);
-    }*/
-
     @PostMapping("/api/post")
     public String save(@ModelAttribute PostsSaveRequestDto requestDto, MultipartFile file) throws Exception {
 
-            System.out.println("post start");
+        System.out.println("post start");
 
 
         SessionUser user=(SessionUser) httpSession.getAttribute("user");
@@ -81,7 +58,7 @@ public class PostsApiController {
 
         System.out.println("post end");
 
-            return "redirect:/";
+        return "redirect:/";
     }
 
     @GetMapping("/api/post/form")
@@ -95,6 +72,11 @@ public class PostsApiController {
             model.addAttribute("post",post);
 
         }
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
         System.out.println("from controller getmapping end");
         return "post/postform.html";
 
@@ -105,22 +87,22 @@ public class PostsApiController {
 
 
 
-
-
-
-
     @GetMapping("/api/post/list/{board_id}")
-    public Posts one(@PathVariable Long board_id) {
-
-
-
+    public Posts one(@PathVariable Long board_id,Model model) {
         System.out.println("/api/post/list/{board_id} 수정하기 화면 시작");
+
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
 
         return postsRepository.findById(board_id).orElse(null);
     }
 
     @PutMapping("/api/post/list/{board_id}")// 수정하기
     public Posts replaceEmployee(@RequestBody Posts newPost, @PathVariable Long id) {
+
 
         return postsRepository.findById(id)
                 .map(post -> {
