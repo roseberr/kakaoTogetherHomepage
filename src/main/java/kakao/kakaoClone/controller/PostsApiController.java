@@ -86,9 +86,9 @@ public class PostsApiController {
 
 
 
-
-    @GetMapping("/api/post/list/{board_id}")
-    public Posts one(@PathVariable Long board_id,Model model) {
+//수정하기 getmapping
+    @GetMapping("/api/post/modify")
+    public String one(Model model, @RequestParam Long id) {
         System.out.println("/api/post/list/{board_id} 수정하기 화면 시작");
 
         SessionUser user=(SessionUser) httpSession.getAttribute("user");
@@ -97,13 +97,20 @@ public class PostsApiController {
             model.addAttribute("userName",user.getName());
         }
 
-        return postsRepository.findById(board_id).orElse(null);
+        if(id==null){
+            model.addAttribute("post",new Posts());
+        }
+        else{
+            Posts post=postsRepository.findById(id).orElse(null);
+            model.addAttribute("post",post);
+        }
+        return "post/modify.html";
     }
 
-    @PutMapping("/api/post/list/{board_id}")// 수정하기
-    public Posts replaceEmployee(@RequestBody Posts newPost, @PathVariable Long id) {
+    @PutMapping("/api/post/modify/{id}")// 수정하기
+    public Posts replaceEmployee( @RequestBody Posts newPost, @PathVariable Long id ) {
 
-
+       // @ModelAttribute PostsSaveRequestDto requestDto, MultipartFile file
         return postsRepository.findById(id)
                 .map(post -> {
                     post.setTopic(newPost.getTopic());
@@ -124,7 +131,7 @@ public class PostsApiController {
                     return postsRepository.save(newPost);
                 });
     }
-    @DeleteMapping("/api/post/list/{board_id}")// 삭제하기
+    @DeleteMapping("/api/post/modify/{board_id}")// 삭제하기
     void deletePost(@PathVariable Long board_id){
         postsRepository.deleteById(board_id);
 

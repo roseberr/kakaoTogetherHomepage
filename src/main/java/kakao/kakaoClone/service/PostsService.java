@@ -39,6 +39,8 @@ public class PostsService {
         requestDto.setFilepath(projectPath+"\\"+fileName);
 
         postsRepository.save(requestDto.toEntity());
+
         System.out.println("save end");
     }
+
 }
