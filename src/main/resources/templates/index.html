@@ -94,11 +94,11 @@
                     <div class="card shadow-sm rounded  ">
                         <!-- <p>"[[${post.filepath}]]" </p>-->
                         <!--<img th:src="[[${post.filepath}]]"  class="img-fluid img-thumbnail" alt="image"  th:if="${post.filepath != null}"/>-->
-                        <resource mapping="/files/*" location="/files/"/>
-                        <div><img src="<spring:url value=@{${post.getFilepath()}}/>"
+                        <!--<resource mapping="/files/*" location="/files/"/>-->
+                        <div><img src="/files/img.png"
                                   class="card-img-top embed-responsive-item" alt="image"/></div>
                         <!-- th:href="/api/post/list(board_id=${post.board_id})"  -->
-
+                        [[${post.filepath}]]
                         <div class="card-body post">  <!--<span id="title"   th:text="${posts.title}"></span>-->
 
 

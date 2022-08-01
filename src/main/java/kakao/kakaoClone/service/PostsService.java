@@ -24,11 +24,13 @@ public class PostsService {
     @Transactional
     public void save(PostsSaveRequestDto requestDto, MultipartFile file)throws Exception{
 
-        String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
+       String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
         //String projectPath="C:/webclone/upload";
 
         UUID uuid=UUID.randomUUID();
-        String fileName=uuid+"_"+file.getOriginalFilename();
+        //String fileName=uuid+"_"+file.getOriginalFilename();
+        String fileName=file.getOriginalFilename();
+
 
         File saveFile=new File(projectPath,fileName);
         if(!saveFile.isDirectory()){
@@ -39,6 +41,8 @@ public class PostsService {
         file.transferTo(saveFile);
 
         requestDto.setFilename(fileName);
+        //requestDto.setFilepath("files/"+fileName);
+
         requestDto.setFilepath(projectPath+"\\"+fileName);
 
         postsRepository.save(requestDto.toEntity());

@@ -29,7 +29,7 @@
 
         <div class="col-md-7 col-lg-6 justify-content-lg-center" style="width: 70%; float:none; margin:0 auto">
             <h4 class="mb-3"></h4>
-            <form class="needs-validation" novalidateaction action="#" th:action="@{/api/post}" method="post"
+            <form class="needs-validation" novalidate action="#" th:action="@{/api/post}" method="post"
                   enctype="multipart/form-data">
                 <div class="row g-3">
                     <!--
@@ -53,11 +53,11 @@
                     <!--  <a> "[[${userName}]]"</a>-->
 
 
-                    <div class="col-12 form-group">
+                    <div class="col-12 form-group ">
                         <label for="title" class="form-label"><b>제목</b></label>
                         <input type="title" class="form-control" id="title" name="title" required>
                         <div class="invalid-feedback">
-                            유효한 제목을 입력하세요.
+                            Please enter a title.
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                                    th:placeholder="${userName}">
                             <!-- <span th:text="${userName}" readonly     </span>   placeholder=작성자-->
                             <div class="invalid-feedback">
-                                유효한 작성자를 입력하세요.
+                                Please enter a valid author.
                             </div>
                         </div>
                     </div>
@@ -84,6 +84,9 @@
                         <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input"
                                required value="donationTogether" onchange="setDisplay()">
                         <label class="form-check-label" for="donationTogether">같이 기부</label>
+                        <div class="invalid-feedback">
+                            Please select a form.
+                        </div>
                     </div>
 
 
@@ -91,24 +94,24 @@
 
                         <select class="form-select " id="smallCategory" checked required name="smallCategory"
                         >
-                            <option value="option1">카테고리 선택</option>
+                            <option value="option1" disabled>카테고리 선택</option>
                             <option value="option2">모금중</option>
                             <option value="option3">모금후기</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select a valid category.
+                            Please select a form.
                         </div>
 
                     </div>
 
                     <div class="col-sm-auto  col-md-auto form-group" id="category2" style="display:none;">
                         <select class="form-select" id="topic" checked required name="topic">
-                            <option value="option1">주제선택</option>
+                            <option value="option1" disabled>주제선택</option>
                             <option value="option2">어린이</option>
                             <option value="option3">지구촌</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select a valid category.
+                            Please select a form.
                         </div>
                     </div>
 
@@ -129,7 +132,7 @@
                                placeholder="단위를 제외한 숫자를 적어주세요"
                                required>
                         <div class="invalid-feedback">
-                            현재모금액을 입력하세요
+                            Please enter a current price.
                         </div>
                     </div>
 
@@ -140,15 +143,18 @@
                                placeholder="단위를 제외한 숫자를 적어주세요"
                                required>
                         <div class="invalid-feedback">
-                            목표금액을 입력하세요
+                            Please enter a target price.
                         </div>
                     </div>
 
 
                     <div class="col-12 form-group">
                         <label for="file" class="form-label">썸네일 등록</label>
-                        <input type="file" name="file" class="form-control" id="file" placeholder="image">
+                        <input type="file" name="file" class="form-control" id="file" placeholder="image" required>
                         <!--th:field="*{image}"-->
+                        <div class="invalid-feedback">
+                            Please select a file.
+                        </div>
                     </div>
 
 
@@ -156,6 +162,9 @@
                         <label for="content" class="form-label">본문</label>
                         <textarea class="form-control" id="content" rows="10" name="content" required
                                   placeholder="내용을 입력해주세요"></textarea>
+                        <div class="invalid-feedback">
+                            Please enter a content.
+                        </div>
                     </div>
 
                     <div class="col-12 form-group">
@@ -167,7 +176,7 @@
 
                         <input class="form-control" id="tag1" placeholder="태그1(필수)" required name="tag1">
                         <div class="invalid-feedback">
-                            태그를 입력하세요
+                            Please enter a tag1.
                         </div>
                     </div>
 
@@ -189,7 +198,7 @@
                         <input type="date" class="form-control" id="endDate" placeholder="종료일을 선택해주세요" required
                                name="endDate">
                         <div class="invalid-feedback">
-                            종료일을 입력하세요
+                            Please select end date.
                         </div>
                     </div>
 
@@ -230,6 +239,26 @@
                             $('#category2').show();
                         }
 }
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
 
 
 </script>
