@@ -101,4 +101,29 @@ public class Posts extends BaseTimeEntity {
         this.filepath=filepath;
 
     }
+    public void update(String topic, String bigCategory , String smallCategory, String title,
+                       String content, String author, String tag1, String tag2, String tag3,
+                       String endDate, Long endPrice,Long currentPrice) {
+
+        this.title = title;
+        this.author = author;
+
+        this.bigCategory=bigCategory;
+        this.smallCategory=smallCategory;
+        this.topic = topic;
+        this.endDate = endDate;
+
+        // this.image = image;
+        this.content = content;
+
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
+
+        this.endPrice = endPrice;
+        this.currentPrice=currentPrice;
+
+    }
+
+
 }

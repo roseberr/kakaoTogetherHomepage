@@ -5,6 +5,7 @@ import kakao.kakaoClone.config.auth.SessionUser;
 import kakao.kakaoClone.domain.board.Posts;
 import kakao.kakaoClone.domain.board.PostsRepository;
 import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
+import kakao.kakaoClone.domain.board.PostsUpdateRequestDto;
 import kakao.kakaoClone.service.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.h2.engine.Session;
@@ -108,32 +109,19 @@ public class PostsApiController {
     }
 
     @PutMapping("/api/post/modify/{id}")// 수정하기
-    public Posts replaceEmployee( @RequestBody Posts newPost, @PathVariable Long id ) {
+    public String update(@ModelAttribute PostsUpdateRequestDto requestDto, @PathVariable Long id,MultipartFile file)throws Exception  {
+        System.out.println("update putmapping start");
+        postsService.update(requestDto,file,id);
+        System.out.println("update putmapping end");
 
-       // @ModelAttribute PostsSaveRequestDto requestDto, MultipartFile file
-        return postsRepository.findById(id)
-                .map(post -> {
-                    post.setTopic(newPost.getTopic());
-                    post.setBigCategory(newPost.getBigCategory());
-                    post.setSmallCategory(newPost.getSmallCategory());
-                    post.setTitle(newPost.getTitle());
-                    post.setContent(newPost.getTitle());
-                    post.setTag1(newPost.getTag1());
-                    post.setTag2(newPost.getTag2());
-                    post.setTag3(newPost.getTag3());
-                    post.setEndDate(newPost.getEndDate());
-                    post.setEndPrice(newPost.getEndPrice());
-
-                    return postsRepository.save(newPost);
-                })
-                .orElseGet(() -> {
-                    newPost.setBoard_id(id);
-                    return postsRepository.save(newPost);
-                });
+        return "redirect:/";
     }
+
     @DeleteMapping("/api/post/modify/{board_id}")// 삭제하기
-    void deletePost(@PathVariable Long board_id){
-        postsRepository.deleteById(board_id);
+    String deletePost(@PathVariable Long board_id){
+        postsService.deleteBoard(board_id);
+
+        return "redirect:/";
 
     }
 
