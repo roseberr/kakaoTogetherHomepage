@@ -73,6 +73,7 @@ background-size: cover;
 
 
 
+        <!--
         <a type="button" class="btn btn-secondary" style="background-color:#F15F5F"  th:href="@{/api/post/modify(id=${post.board_id})}">수정</a>
 
         <form id="delete-form" th:action="|/api/post/modify/${post.board_id}|" method="post">
@@ -80,17 +81,19 @@ background-size: cover;
         <button type=" submit" class="btn btn-secondary"style="background-color:#F29661"  >삭제</button>
         </form>
 
-        <a data-confirm="Are you sure?" data-method="delete" href="/api/post/modify/{$post.board_id}" rel="nofollow">Delete</a>
-        <!--
-                <form id="delete-form" th:action="@{'/api/post/delete/' + ${post.board_id}}" method="get">
+     -->
+        <form  th:action="|/api/post/modify/${post.board_id}|" method="post">
 
-                <input type="hidden" name="_method" value="delete"/>
+        <a type="button" class="btn btn-secondary" style="background-color:#F15F5F"  th:href="@{/api/post/modify(id=${post.board_id})}">수정</a>
 
-                </form>
+            <form action="#" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+            <button type=" submit" class="btn btn-secondary"style="background-color:#F29661"  >삭제</button>
+        </form>
+        </form>
 
-                <a type="button" id="btn-remove" class="btn btn-secondary" style="background-color:#F29661"  >삭제</a>-->
-        <!--  @{/api/post/delete(id=${post.board_id})}
-         <button id="btn-remove" class="btn btn-danger">delete</button> -->
+
+
 
     </div>
 </div>
