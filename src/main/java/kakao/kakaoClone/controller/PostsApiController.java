@@ -130,11 +130,10 @@ public class PostsApiController {
 
 
     // 삭제하기
-    @DeleteMapping("/api/post/delete/{id}")
+    @DeleteMapping("/api/post/modify/{id}")
     String deletePost(@PathVariable Long id) {
         System.out.println("/api/post/list/{board_id} 삭제하기 화면 시작");
         postsService.deleteBoard(id);
-
         return "redirect:/";
     }
 
