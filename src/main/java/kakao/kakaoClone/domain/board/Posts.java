@@ -27,7 +27,7 @@ public class Posts extends BaseTimeEntity {
     //@JoinColumn(name="MEMBER_ID")
     //private User user;
 
-    @Column(length=100, nullable = false)
+    @Column(length=50, nullable = false)
     private String bigCategory;     //같이기부 프로모션
 
     @Column
@@ -55,7 +55,7 @@ public class Posts extends BaseTimeEntity {
 
 
 
-    @Column(length=50, nullable = false)
+    @Column(length=500, nullable = false)
     private String tag1;
 
     private String tag2;
@@ -67,12 +67,12 @@ public class Posts extends BaseTimeEntity {
     private String endDate;
 
     //최종모금액
-    @Column(nullable = false)
+    @Column(length=500,nullable = false)
     private Long endPrice;
 
     //현재 모금액
 
-    @Column(nullable = false)
+    @Column(length=500,nullable = false)
     private Long currentPrice;
 
     @Builder

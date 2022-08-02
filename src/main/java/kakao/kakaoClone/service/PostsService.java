@@ -92,17 +92,17 @@ public class PostsService {
         Posts post = postsRepository.findById(id) .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         post.setTopic(requestDto.getTopic());
-        post.setBigCategory(requestDto.bigCategory);
-        post.setSmallCategory(requestDto.smallCategory);
+        post.setBigCategory(requestDto.getBigCategory());
+        post.setSmallCategory(requestDto.getSmallCategory());
         post.setTitle(requestDto.getTitle());
         post.setContent(requestDto.getContent());
         post.setAuthor(requestDto.getAuthor());
-        post.setTag1(post.getTag1());
-        post.setTag2(post.getTag2());
-        post.setTag3(post.getTag3());
-        post.setEndDate(post.getEndDate());
-        post.setEndPrice(post.getEndPrice());
-        post.setCurrentPrice(post.getCurrentPrice());
+        post.setTag1(requestDto.getTag1());
+        post.setTag2(requestDto.getTag2());
+        post.setTag3(requestDto.getTag3());
+        post.setEndDate(requestDto.getEndDate());
+        post.setEndPrice(requestDto.getEndPrice());
+        post.setCurrentPrice(requestDto.getCurrentPrice());
 
 
         System.out.println("update end");
