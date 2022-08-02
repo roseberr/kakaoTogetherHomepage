@@ -10,12 +10,13 @@
     <!--        <title>Page title         </title>                                -->
     <!--        필요하다면 개별 파일에 사용될 css/js 선언     -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script th:src="@{../js/file.js}"></script>
+
 
 </head>
 
 <body layout:fragment="content">
-
-
 
 <div class="container  ">
     <main>
@@ -23,14 +24,16 @@
             <!--<img class="d-block mx-auto mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
             <!-- <h2>Checkout form</h2>-->
             <p class="lead ">
-            <h4><b> 글 등록하기</b></h4>
+            <h4><b> 글 수정하기</b></h4>
             </p>
         </div>
 
         <div class="col-md-7 col-lg-6 justify-content-lg-center" style="width: 70%; float:none; margin:0 auto">
             <h4 class="mb-3"></h4>
-            <form class="needs-validation" novalidate action="#" th:action="@{/api/post}" method="post"
+            <form class="needs-validation" novalidate  th:action="@{'/api/post/modify/' +${post.board_id}}"  method="post"
                   enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="put"/>
+                <input type="hidden" name="id" th:value="${post.board_id}"/>
                 <div class="row g-3">
                     <!--
                             <div class="col-sm-6">
@@ -55,7 +58,7 @@
 
                     <div class="col-12 form-group ">
                         <label for="title" class="form-label"><b>제목</b></label>
-                        <input type="title" class="form-control" id="title" name="title" required>
+                        <input type="title" class="form-control" id="title" name="title" required th:value="${post.title}">
                         <div class="invalid-feedback">
                             Please enter a title.
                         </div>
@@ -82,8 +85,8 @@
 
                     <div class="form-check col-sm-auto pt-1 form-group mb-3">
                         <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input"
-                               required value="donationTogether" onchange="setDisplay()">
-                        <label class="form-check-label" for="donationTogether">같이 기부</label>
+                               required  onchange="setDisplay()" value="donationTogether" >
+                        <label class="form-check-label" for="donationTogether" th:placehold="${post.bigCategory}">같이 기부</label>
                         <div class="invalid-feedback">
                             Please select a form.
                         </div>
@@ -92,9 +95,10 @@
 
                     <div class="col-sm-auto col-md-auto form-group " id="category1" style="display:none;">
 
-                        <select class="form-select " id="smallCategory" checked required name="smallCategory"
+                        <select class="form-select " id="smallCategory" required name="smallCategory"
+                                th:placehold="${post.smallCategory}"
                         >
-                            <option value="option1" disabled>카테고리 선택</option>
+                            <option value="option1" disabled >카테고리 선택</option>
                             <option value="모금중">모금중</option>
                             <option value="모금후기">모금후기</option>
                         </select>
@@ -105,8 +109,8 @@
                     </div>
 
                     <div class="col-sm-auto  col-md-auto form-group" id="category2" style="display:none;">
-                        <select class="form-select" id="topic" checked required name="topic">
-                            <option value="option1" disabled>주제선택</option>
+                        <select class="form-select" id="topic" required name="topic" th:value="${post.topic}">
+                            <option value="option1" disabled >주제선택</option>
                             <option value="어린이">어린이</option>
                             <option value="지구촌">지구촌</option>
                         </select>
@@ -118,8 +122,10 @@
 
                     <div class="form-check form-group ">
                         <input id="promotion" name="bigCategory" type="radio" class="form-check-input" required
-                               value="promotion" onchange="setDisplay()">
+                              onchange="setDisplay()" value="promotion" >
                         <label class="form-check-label" for="promotion">프로모션</label>
+                        <div class="invalid-feedback">
+                        </div>
                     </div>
 
 
@@ -129,7 +135,7 @@
                     <div class="col-12 form-group">
                         <label for="currentPrice" class="form-label">현재 모금액</label>
                         <input type="text" class="form-control" id="currentPrice" name="currentPrice"
-                               placeholder="단위를 제외한 숫자를 적어주세요"
+                               th:value="${post.currentPrice}"
                                required>
                         <div class="invalid-feedback">
                             Please enter a current price.
@@ -140,7 +146,7 @@
                     <div class="col-12 form-group">
                         <label for="endPrice" class="form-label">목표 금액</label>
                         <input type="text" class="form-control" id="endPrice" name="endPrice"
-                               placeholder="단위를 제외한 숫자를 적어주세요"
+                               th:value="${post.endPrice}"
                                required>
                         <div class="invalid-feedback">
                             Please enter a target price.
@@ -150,7 +156,7 @@
 
                     <div class="col-12 form-group">
                         <label for="file" class="form-label">썸네일 등록</label>
-                        <input type="file" name="file" class="form-control" id="file" placeholder="image" required>
+                        <input type="file" name="file" class="form-control" id="file" th:value="${post.filename}" required>
                         <!--th:field="*{image}"-->
                         <div class="invalid-feedback">
                             Please select a file.
@@ -161,7 +167,7 @@
                     <div class="col-12 form-group">
                         <label for="content" class="form-label">본문</label>
                         <textarea class="form-control" id="content" rows="10" name="content" required
-                                  placeholder="내용을 입력해주세요"></textarea>
+                                  > [[${post.content}]]</textarea>
                         <div class="invalid-feedback">
                             Please enter a content.
                         </div>
@@ -174,7 +180,7 @@
 
                     <div class="col-md-4 form-group">
 
-                        <input class="form-control" id="tag1" placeholder="태그1(필수)" required name="tag1">
+                        <input class="form-control" id="tag1"   th:value="${post.tag1}" required name="tag1">
                         <div class="invalid-feedback">
                             Please enter a tag1.
                         </div>
@@ -182,28 +188,32 @@
 
                     <div class="col-md-4 form-group">
 
-                        <input class="form-control" id="tag2" placeholder="태그2(선택)" name="tag2">
+                        <input class="form-control" id="tag2"  placeholder="태그2(선택)" th:value="${post.tag2}" name="tag2" >
+                        <div class="valid-feedback">
 
+                        </div>
                     </div>
 
                     <div class="col-md-4 form-group">
 
-                        <input class="form-control" id="tag3" placeholder="태그3(선택)" name="tag3">
+                        <input class="form-control" id="tag3"  placeholder="태그3(선택)" th:value="${post.tag3}" name="tag3" >
+                        <div class="valid-feedback">
 
+                        </div>
                     </div>
 
 
                     <div class="col-12 form-group">
                         <label for="endDate" class="form-label">종료일</label>
                         <input type="date" class="form-control" id="endDate" placeholder="종료일을 선택해주세요" required
-                               name="endDate">
+                               name="endDate"  th:value="${post.endDate}">
                         <div class="invalid-feedback">
                             Please select end date.
                         </div>
                     </div>
 
 
-                    <hr class="my-4 ">
+                    <hr class="my-4">
 
 
                     <!-- <a class="btn btn-secondary my-2 my-sm-0 mx-2" href="/">메인화면으로</a>-->

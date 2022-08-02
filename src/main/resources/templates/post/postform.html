@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+
+
+<style>
+    @media (min-width: 768px){.container
+    {width: 750px;}}
+    @media (min-width: 992px) {.container { width: 940px; }}
+    @media (min-width: 1200px) { .container { width: 940px; }}
+
+
+</style>
+-
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--        <title>Page title         </title>                                -->
+    <!--        필요하다면 개별 파일에 사용될 css/js 선언                               -->
+</head>
+
+<body layout:fragment="content">
+
+
+<!-- Jumbotron -->
+<div
+        class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white  "
+        style="background-image: url('https://img.freepik.com/free-photo/children-s-day-little-boy-blowing-soap-bubbles-in-the-park-cute-toddler-boy-playing-with-soap-bubbles-on-summer-field-hands-up-happy-childhood-concept-authentic-lifestyle-image_1150-45806.jpg?w=996&t=st=1659012864~exp=1659013464~hmac=49d7db5e8c4b0a409358506651994222e8c1ef7475d6b490888aec036532e721') ;
+background-color: rgba(0, 0, 0, 0.15);
+background-size: cover;
+ background-position: center center;
+   z-index:1;
+        background-blend-mode: multiply;"
+
+>
+    <h1 class="mb-1 h1 strong" th:text="${post.title}">제목</h1>
+    <h5 class="mb-4 h5 text-muted" th:text="${post.author}">작성자</h5>
+
+    <div class="box text-center">
+        <span class="badge rounded-pill text-bg-light " th:text="${post.tag1}">tag1</span>
+        <span class="badge rounded-pill text-bg-dark" th:text="${post.tag2}">tag2</span>
+        <span class="badge rounded-pill text-bg-light" th:text="${post.tag3}">tag3</span>
+    </div>
+
+
+</div>
+
+<div class="container ">
+
+    <div style="white-space:pre;" th:text="${post.content}">content
+
+
+    </div>
+
+    <hr class="my-4">
+</div>
+
+<!-- Jumbotron -->
+
+<div class="container text-center ">
+
+    <h2 style="font-weight: bold; color:#B404AE" th:text="${post.currentPrice} + '원'">현재모금액</h2>
+    <a th:text="${post.endPrice} + '원 목표'">목표금액</a>
+
+
+</div>
+
+<div class="container">
+    <div style="position: fixed; right: 3rem; bottom: 1rem;">
+
+
+
+        <a type="button" class="btn btn-secondary" style="background-color:#F15F5F"  th:href="@{/api/post/modify(id=${post.board_id})}">수정</a>
+        <a type="button" class="btn btn-secondary"style="background-color:#F29661"   th:href="@{/api/post/delete(id=${post.board_id})}">삭제</a>
+
+        <!--
+                <form id="delete-form" th:action="@{'/api/post/delete/' + ${post.board_id}}" method="get">
+
+                <input type="hidden" name="_method" value="delete"/>
+
+                </form>
+
+                <a type="button" id="btn-remove" class="btn btn-secondary" style="background-color:#F29661"  >삭제</a>-->
+        <!--  @{/api/post/delete(id=${post.board_id})}
+         <button id="btn-remove" class="btn btn-danger">delete</button> -->
+
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="btn-group justify-content-lg-center col-12 py-5 ">
+        <a href="#" class="btn btn-primary active" aria-current="page">
+            <i class="bi-heart" width="30" height="30" style="font-size:1rem; color: red; cursor: pointer;"></i>
+            응원하기</a>
+
+
+        <a href="#" class="btn btn-primary"> <img src="/icons/share-from-square-solid.svg" alt="" width="20"
+                                                  height="25">공유하기</a>
+
+        <a href="#" class="btn btn-primary active">기부하기</a>
+
+    </div>
+</div>
+
+
+
+<script>
+
+        var i = 0;
+        $('i').on('click',function(){
+            if(i==0){
+                $(this).attr('class','bi-heart-fill');
+                i++;
+            }else if(i==1){
+                $(this).attr('class','bi-heart');
+                i--;
+            }
+
+        });
+
+
+
+</script>
+<!--
+$(function(){
+$('#btn-remove').click(function(){
+if(confirm("영구적으로 삭제됩니다")){
+self.location.href = "/api/post/delete/{post.board_id})";
+
+
+}
+
+});
+});
+
+
+-->
+
+
+</body>
+</html>

@@ -18,6 +18,7 @@ public class HomepageApplication {
 	}
 
 
+	//HiddenHttpMethodFilter를 Bean으로 등록하여, @PutMapping과 @DeleteMapping이작동할 수 있도록 해줍니다.
 	@Bean
 	public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
 		return new HiddenHttpMethodFilter();

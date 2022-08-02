@@ -29,7 +29,6 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 
 @RequiredArgsConstructor
-//@RestController
 @Controller
 @ComponentScan
 
@@ -116,24 +115,29 @@ public class PostsApiController {
         return "post/modify.html";
     }
 
+
     @PutMapping("/api/post/modify/{id}")// 수정하기
     public String update(@ModelAttribute PostsUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file) throws Exception {
         System.out.println("update putmapping start");
         postsService.update(requestDto, file, id);
         System.out.println("update putmapping end");
 
-       // return "redirect:/";
-        return "redirect: api/post/modify";
-    }
-
-    @DeleteMapping("/api/post/modify/{board_id}")
-// 삭제하기
-    String deletePost(@PathVariable Long board_id) {
-        postsService.deleteBoard(board_id);
+       //th:href="@{/api/post/form(id=${post.board_id})}"
+        //api/post/form/{id}
 
         return "redirect:/";
-
     }
+
+
+    // 삭제하기
+    @PostMapping("/api/post/delete/{id}")
+    String deletePost(@PathVariable Long id) {
+        System.out.println("/api/post/list/{board_id} 삭제하기 화면 시작");
+        postsService.deleteBoard(id);
+
+        return "redirect:/";
+    }
+
     // feed image 반환하기
     @ResponseBody
     @GetMapping("/{filepath}")
