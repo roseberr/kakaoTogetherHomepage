@@ -96,7 +96,6 @@ public class PostsService {
         post.setSmallCategory(requestDto.getSmallCategory());
         post.setTitle(requestDto.getTitle());
         post.setContent(requestDto.getContent());
-        post.setAuthor(requestDto.getAuthor());
         post.setTag1(requestDto.getTag1());
         post.setTag2(requestDto.getTag2());
         post.setTag3(requestDto.getTag3());
