@@ -85,8 +85,8 @@
 
                     <div class="form-check col-sm-auto pt-1 form-group mb-3">
                         <input id="donationTogether" name="bigCategory" type="radio" class="form-check-input"
-                               required  onchange="setDisplay()" value="donationTogether" >
-                        <label class="form-check-label" for="donationTogether" th:placehold="${post.bigCategory}">같이 기부</label>
+                               required  onchange="setDisplay()"  >
+                        <label class="form-check-label" for="donationTogether" >같이 기부</label>
                         <div class="invalid-feedback">
                             Please select a form.
                         </div>
@@ -96,7 +96,7 @@
                     <div class="col-sm-auto col-md-auto form-group " id="category1" style="display:none;">
 
                         <select class="form-select " id="smallCategory" required name="smallCategory"
-                                th:placehold="${post.smallCategory}"
+                                th:value="${post.smallCategory}"
                         >
                             <option value="option1" disabled >카테고리 선택</option>
                             <option value="모금중">모금중</option>
@@ -122,7 +122,7 @@
 
                     <div class="form-check form-group ">
                         <input id="promotion" name="bigCategory" type="radio" class="form-check-input" required
-                              onchange="setDisplay()" value="promotion" >
+                              onchange="setDisplay()" value="promotion"   >
                         <label class="form-check-label" for="promotion">프로모션</label>
                         <div class="invalid-feedback">
                         </div>

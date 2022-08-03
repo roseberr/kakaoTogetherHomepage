@@ -1,6 +1,6 @@
 package kakao.kakaoClone.service;
 
-
+import org.slf4j.Logger;
 import kakao.kakaoClone.domain.board.Posts;
 import kakao.kakaoClone.domain.board.PostsRepository;
 import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
@@ -17,13 +17,14 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Service
 
+
 public class PostsService {
     private final PostsRepository postsRepository;
-
+    private final S3Uploader s3Uploader;
 
     @Transactional
     public void save(PostsSaveRequestDto requestDto, MultipartFile file)throws Exception{
-
+/*
        String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
         //String projectPath="C:/webclone/upload";
 
@@ -40,13 +41,17 @@ public class PostsService {
 
         file.transferTo(saveFile);
 
+
         requestDto.setFilename(fileName);
         //requestDto.setFilepath("files/"+fileName);
 
         requestDto.setFilepath(projectPath+"\\"+fileName);
+*/
+        System.out.println("PostService s3 start");
 
+        s3Uploader.upload(file, "static");
+        System.out.println("PostService s3 end");
         postsRepository.save(requestDto.toEntity());
-
         System.out.println("save end");
     }
 
@@ -71,7 +76,7 @@ public class PostsService {
 
     @Transactional
     public Posts update(PostsUpdateRequestDto requestDto, MultipartFile file, Long id)throws Exception{
-
+/*
         String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
         //String projectPath="C:/webclone/upload";
 
@@ -89,6 +94,12 @@ public class PostsService {
         requestDto.setFilename(fileName);
         requestDto.setFilepath(projectPath+"\\"+fileName);
 
+        */
+        //파일업로드
+        s3Uploader.upload(file, "static");
+
+
+        //받아온 정보 update
         Posts post = postsRepository.findById(id) .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         post.setTopic(requestDto.getTopic());

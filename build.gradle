@@ -29,6 +29,16 @@ dependencies {
 
 	//implementation('org.springframework.session::spring-session-jdbc')
 	implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
+
+	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.2'
+	implementation 'org.slf4j:slf4j-api:1.7.36'
+
+	implementation 'ch.qos.logback:logback-core:1.2.11'
+
+	implementation ('ch.qos.logback:logback-classic:1.2.11'){
+		exclude group: 'org.slf4j', module: 'slf4j-api'
+		exclude group: 'ch.qos.logback', module: 'logback-core'
+	}
 }
 
 tasks.named('test') {

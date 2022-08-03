@@ -47,8 +47,8 @@ public class Posts extends BaseTimeEntity {
     private String author;
 
 
-    @Column(length=500)
-    private String filename;
+    //  @Column(length=500)
+    //private String filename;
 
     @Column(length=500)
     private String filepath;
@@ -78,7 +78,7 @@ public class Posts extends BaseTimeEntity {
     @Builder
     public Posts(String topic, String bigCategory , String smallCategory, String title,
                  String content, String author, String tag1, String tag2, String tag3,
-                 String endDate, Long endPrice,Long currentPrice, String filename, String filepath) {
+                 String endDate, Long endPrice,Long currentPrice,  String filepath) {
         this.title = title;
         this.author = author;
 
@@ -97,13 +97,13 @@ public class Posts extends BaseTimeEntity {
         this.endPrice = endPrice;
         this.currentPrice=currentPrice;
 
-        this.filename=filename;
+        //this.filename=filename;
         this.filepath=filepath;
 
     }
     public void update(String topic, String bigCategory , String smallCategory, String title,
                        String content, String author, String tag1, String tag2, String tag3,
-                       String endDate, Long endPrice,Long currentPrice) {
+                       String endDate, Long endPrice,Long currentPrice,String filepath) {
 
         this.title = title;
         this.author = author;
@@ -122,6 +122,8 @@ public class Posts extends BaseTimeEntity {
 
         this.endPrice = endPrice;
         this.currentPrice=currentPrice;
+
+        this.filepath=filepath;
 
     }
 

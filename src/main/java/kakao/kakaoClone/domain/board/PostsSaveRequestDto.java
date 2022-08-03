@@ -27,7 +27,7 @@ public class PostsSaveRequestDto {
 
     private String filepath;
 
-    private String filename;
+   // private String filename;
 
     private String content;
 
@@ -46,8 +46,8 @@ public class PostsSaveRequestDto {
     @Builder
     public PostsSaveRequestDto(String topic, String title, String author, String bigCategory,
                                String smallCategory,Long currentPrice, Long endPrice, String content, String tag1,
-                               String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate,
-                               String filepath, String filename) {
+                               String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate
+                              ) {
 
         System.out.println(" PostsSaveRequestDto start");
         this.title = title;
@@ -65,7 +65,7 @@ public class PostsSaveRequestDto {
         this.endDate = endDate;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
-        this.filename=filename;
+        //this.filename=filename;
         this.filepath=filepath;
         System.out.println(" PostsSaveRequestDto 생성자 end");
 
@@ -88,7 +88,7 @@ public class PostsSaveRequestDto {
                 .tag2(tag2)
                 .tag3(tag3)
                 .endDate(endDate)
-                .filename(filename)
+               // .filename(filename)
                 .filepath(filepath)
                 .build();
         return post;

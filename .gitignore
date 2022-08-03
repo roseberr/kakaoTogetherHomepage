@@ -40,3 +40,9 @@ out/
 
 ### Google Oauth2###
 application-oauth.properties
+
+### AWS S3 Credential###
+
+application-aws.properties
+
+/amazon s3/new_user_credentials.csv
