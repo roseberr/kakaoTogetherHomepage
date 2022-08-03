@@ -49,7 +49,9 @@ public class PostsService {
 */
         System.out.println("PostService s3 start");
 
-        s3Uploader.upload(file, "static");
+        String uploadUrl=s3Uploader.upload(file, "static");
+        requestDto.setFilepath(uploadUrl);
+       // https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/static/
         System.out.println("PostService s3 end");
         postsRepository.save(requestDto.toEntity());
         System.out.println("save end");
@@ -96,7 +98,8 @@ public class PostsService {
 
         */
         //파일업로드
-        s3Uploader.upload(file, "static");
+        String uploadUrl=s3Uploader.upload(file, "static");
+        requestDto.setFilepath(uploadUrl);
 
 
         //받아온 정보 update

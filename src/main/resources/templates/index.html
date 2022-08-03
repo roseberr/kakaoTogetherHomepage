@@ -95,9 +95,12 @@
                         <!-- <p>"[[${post.filepath}]]" </p>-->
                         <!--<img th:src="[[${post.filepath}]]"  class="img-fluid img-thumbnail" alt="image"  th:if="${post.filepath != null}"/>-->
                         <!--<resource mapping="/files/*" location="/files/"/>-->
-                        <div><img src="/files/img.png"
-                                  class="card-img-top embed-responsive-item" alt="image"/></div>
-                        <!-- th:href="/api/post/list(board_id=${post.board_id})"  -->
+                        <div><img th:src= "${post.filepath}"
+                                  class="card-img-top embed-responsive-item" alt=[[${post.filepath}]] ></div>
+
+
+
+                        <!-- th:href="/api/post/list(board_id=${post.board_id})"  /files/img.png -->
                        <!-- [[${post.filepath}]]-->
                         <div class="card-body post">  <!--<span id="title"   th:text="${posts.title}"></span>-->
 
