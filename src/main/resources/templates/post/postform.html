@@ -24,18 +24,15 @@
 
 <body layout:fragment="content">
 
-<span class="image" th:style="'background-image:url(' + ${post.filepath} + ');'"></span>
-
-[[${post.filepath}]]
 <!-- Jumbotron -->
-<div
-        class="image bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white  "
-        th:style="background-image: url('https://img.freepik.com/free-photo/children-s-day-little-boy-blowing-soap-bubbles-in-the-park-cute-toddler-boy-playing-with-soap-bubbles-on-summer-field-hands-up-happy-childhood-concept-authentic-lifestyle-image_1150-45806.jpg?w=996&t=st=1659012864~exp=1659013464~hmac=49d7db5e8c4b0a409358506651994222e8c1ef7475d6b490888aec036532e721');
+<div   class="image background-image  p-5 text-center shadow-1-strong rounded mb-5 text-white  "
+
+        th:style="'background-image:url('+ ${post.filepath} +');
 background-color: rgba(0, 0, 0, 0.15);
 background-size: cover;
  background-position: center center;
    z-index:1;
-        background-blend-mode: multiply;"
+        background-blend-mode: multiply;' "
 
 >
     <h1 class="mb-1 h1 strong" th:text="${post.title}">제목</h1>
