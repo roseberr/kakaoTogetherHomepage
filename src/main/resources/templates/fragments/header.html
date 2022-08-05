@@ -8,29 +8,44 @@
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
             crossorigin="anonymous"></script>
 
-    <!--                           header                          -->
+    <link rel="stylesheet" href="/index.css">
 
+    <!--                           header                          -->
+    <style>
+
+a.style01:visited{
+    font-weight:bold;
+  }
+  a.style01:hover{
+    font-weight:bold;
+  }
+   a.style01:focus{
+    font-weight:bold;
+  }
+
+  }
+    </style>
 
     <div class="container mt-1 ">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
             <a class="navbar-brand" href="/"><h4><b>솔찬의 우리같이</b></h4></a>
 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ">
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ms-5">
                 <li class="nav-item dropdown ">
-                    <a class="nav-link
+                    <a class="nav-link style01
 px-2 link-dark" href="#" id="dropdown07XL" data-bs-toggle="dropdown"
                        aria-expanded="false">같이기부</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
                         <ul class="list-unstyled mb-0">
-                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/">
+                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2 style01" href="/">
                                 <span class="d-inline-block bg-success rounded-circle p-1"></span>
                                 전체
                             </a></li>
-                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/donationTogether/ing">
                                 <span class="d-inline-block bg-primary rounded-circle p-1"></span>
                                 모금중
                             </a></li>
-                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/donationTogether/end">
                                 <span class="d-inline-block bg-danger rounded-circle p-1"></span>
                                 모금후기
                             </a></li>
@@ -38,13 +53,13 @@ px-2 link-dark" href="#" id="dropdown07XL" data-bs-toggle="dropdown"
                         </ul>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link
+                <li class="nav-item dropdown ">
+                    <a class="nav-link style01
 px-2 link-dark" href="#" id="dropdown07XK" data-bs-toggle="dropdown"
                        aria-expanded="false">프로모션</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
                         <ul class="list-unstyled mb-0">
-                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/promotion">
                                 <span class="d-inline-block bg-success rounded-circle p-1"></span>
                                 전체
                             </a></li>
@@ -63,25 +78,25 @@ px-2 link-dark" href="#" id="dropdown07XK" data-bs-toggle="dropdown"
                 </li>
                 <li class="nav-item justify-content-end
 ">
-                    <a class="nav-link
+                    <a class="nav-link style01
 px-2 link-dark" href="#">더보기</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link
+                <li class="nav-item ">
+                    <a class="nav-link style01
 px-2 link-dark" href="#">Contact</a>
                 </li>
             </ul>
             <style>
             .button3 {border-radius: 10%;}
             </style>
-            <div class="col-md-3 text-end">
+            <div class="col-md-3 text-end me-2">
                 <span th:if ="${userName!=NULL}">
                 <form>
                     <a type="button" class="btn btn-dark" href="/api/post">등록하기</a>
                     <!-- home button       -->
                 <a class="dropdown"  aria-expanded="false"  href="#">
-                    <a  data-bs-toggle="dropdown"  style="border:none;background-color:white;">
-                        <img src="/icons/user-check-solid.svg" width="32" height="32">
+                    <a  data-bs-toggle="dropdown"  style="border:none; background-color:white;">
+                        <img src="/icons/user-check-solid.svg" width="32" height="32"  >
                         <ul class="dropdown-menu" >
                             <ul class="list-unstyled mb-0">
                             <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/">
@@ -110,10 +125,10 @@ px-2 link-dark" href="#">Contact</a>
                 <span th:if ="${userName==NULL}">
                   <form role="search">
                     <a type="submit" style="border:none;background-color:white;" class="btn-image " id="google_button"
-                       href="/oauth2/authorization/google"><img src="/icons/google1.svg" width="35" height="35"></a>
+                       href="/oauth2/authorization/google"><img src="https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/icons/google1.svg" width="35" height="35"></a>
 
                     <a type="submit" style="border:none;background-color:white;" class="btn-image" id="naver_button"
-                       href="/oauth2/authorization/naver"><img src="/icons/naver1.png" width="35" height="35"></a>
+                       href="/oauth2/authorization/naver"><img src="https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/icons/naver1.png" width="35" height="35"></a>
                 </form>
                 </span>
 
