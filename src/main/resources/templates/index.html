@@ -110,7 +110,9 @@
                                 <p class="card-text"th:text="${post.author}"></p>
                                 <div class="text-right"  style=" font-weight: bolder;" th:text="'최종모금액: '+${post.endPrice}+'원'"></div>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-info progress-bar-animate" role="progressbar" aria-label="Info example" style="width:50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1000"></div>
+                                    <div class="progress-bar progress-bar-striped bg-info  progress-width" role="progressbar" aria-label="Info example"
+                                         th:style="'width:calc(' +${post.currentPrice} +'%*100/' +${post.endPrice} +');     '"
+                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
 
 
                     </div>
@@ -124,5 +126,6 @@
     </div>
 </div>
 </body>
+<!-- ${post.currentPrice}/${post.endPrice}*100 -->
 
 </html>

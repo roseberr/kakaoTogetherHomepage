@@ -117,13 +117,10 @@ public class PostsApiController {
 
 
     @PutMapping("/api/post/modify/{id}")// 수정하기
-    public String update(@ModelAttribute PostsUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file) throws Exception {
+    public String update(@ModelAttribute PostsUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file,Model model) throws Exception {
         System.out.println("update putmapping start");
         postsService.update(requestDto, file, id);
         System.out.println("update putmapping end");
-
-       //th:href="@{/api/post/form(id=${post.board_id})}"
-        //api/post/form/{id}
 
         return "redirect:/";
     }
