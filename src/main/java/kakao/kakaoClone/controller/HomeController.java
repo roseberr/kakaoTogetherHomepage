@@ -28,9 +28,56 @@ public class HomeController {
             model.addAttribute("userName",user.getName());
         }
 
-        List<Posts> posts= postsRepository.findAll();
+        List<Posts> posts= postsRepository.findByBigCategory("donationTogether");
         if(posts!=null){
         model.addAttribute("posts",posts);
+        }
+
+
+        return "index.html";
+    }
+
+    @GetMapping("/donationTogether/ing")
+    public String donation_ing(Model model){
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
+
+        List<Posts> posts= postsRepository.findByBigCategoryAndSmallCategory("donationTogether","모금중");
+        if(posts!=null){
+            model.addAttribute("posts",posts);
+        }
+
+
+        return "index.html";
+    }
+    @GetMapping("/donationTogether/end")
+    public String donation_end(Model model){
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
+
+        List<Posts> posts= postsRepository.findByBigCategoryAndSmallCategory("donationTogether","모금후기");
+        if(posts!=null){
+            model.addAttribute("posts",posts);
+        }
+
+
+        return "index.html";
+    }
+
+    @GetMapping("/promotion")
+    public String promotion(Model model){
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
+
+        List<Posts> posts= postsRepository.findByBigCategory("promotion");
+        if(posts!=null){
+            model.addAttribute("posts",posts);
         }
 
 

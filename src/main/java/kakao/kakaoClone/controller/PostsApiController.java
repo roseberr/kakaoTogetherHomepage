@@ -68,8 +68,12 @@ public class PostsApiController {
 
 
         System.out.println("post end");
+        if (requestDto.bigCategory=="bigCategory"){
+            return "redirect:/";
+        } else {
 
-        return "redirect:/";
+            return "redirect:/promotion";
+        }
     }
 
     @GetMapping("/api/post/form")
