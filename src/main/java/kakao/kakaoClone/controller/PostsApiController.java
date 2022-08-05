@@ -68,7 +68,7 @@ public class PostsApiController {
 
 
         System.out.println("post end");
-        if (requestDto.bigCategory=="bigCategory"){
+        if (requestDto.bigCategory=="donationTogether"){
             return "redirect:/";
         } else {
 
