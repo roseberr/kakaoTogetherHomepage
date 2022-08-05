@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 public class PostsSaveRequestDto {
 
-
+    private String subTitle;
     private String title;
 
     private String author;
@@ -44,13 +44,14 @@ public class PostsSaveRequestDto {
 
 
     @Builder
-    public PostsSaveRequestDto(String topic, String title, String author, String bigCategory,
+    public PostsSaveRequestDto(String topic, String title, String subTitle,String author, String bigCategory,
                                String smallCategory,Long currentPrice, Long endPrice, String content, String tag1,
                                String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate
                               ) {
 
         System.out.println(" PostsSaveRequestDto start");
         this.title = title;
+        this.subTitle=subTitle;
         this.author = author;
         this.bigCategory = bigCategory;
         this.smallCategory = smallCategory;
@@ -76,6 +77,7 @@ public class PostsSaveRequestDto {
         System.out.println(" PostsSaveRequestDto to entity start");
         Posts post = Posts.builder()
                 .title(title)
+                .subTitle(subTitle)
                 .author(author)
                 .bigCategory(bigCategory)
                 .smallCategory(smallCategory)

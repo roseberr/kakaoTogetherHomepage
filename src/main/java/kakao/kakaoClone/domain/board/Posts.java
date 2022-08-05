@@ -38,6 +38,8 @@ public class Posts extends BaseTimeEntity {
 
     @Column(length=500, nullable = false)
     private String title;
+    @Column(length=500, nullable = false)
+    private String subTitle;
 
     @Column(columnDefinition = "TEXT",nullable = false)
     private String content;
@@ -76,7 +78,7 @@ public class Posts extends BaseTimeEntity {
     private Long currentPrice;
 
     @Builder
-    public Posts(String topic, String bigCategory , String smallCategory, String title,
+    public Posts(String topic, String bigCategory , String smallCategory, String title,String subTitle,
                  String content, String author, String tag1, String tag2, String tag3,
                  String endDate, Long endPrice,Long currentPrice,  String filepath) {
         this.title = title;
@@ -86,7 +88,7 @@ public class Posts extends BaseTimeEntity {
         this.smallCategory=smallCategory;
         this.topic = topic;
         this.endDate = endDate;
-
+        this.subTitle=subTitle;
        // this.image = image;
         this.content = content;
 
@@ -101,10 +103,10 @@ public class Posts extends BaseTimeEntity {
         this.filepath=filepath;
 
     }
-    public void update(String topic, String bigCategory , String smallCategory, String title,
+    public void update(String topic, String bigCategory , String smallCategory,String subTitle, String title,
                        String content, String author, String tag1, String tag2, String tag3,
                        String endDate, Long endPrice,Long currentPrice,String filepath) {
-
+        this.subTitle=subTitle;
         this.title = title;
         this.author = author;
 

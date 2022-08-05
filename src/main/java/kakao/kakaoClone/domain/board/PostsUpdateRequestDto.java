@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 public class PostsUpdateRequestDto {
 
-
+    private String subTitle;
     private String title;
 
     private String author;
@@ -44,12 +44,13 @@ public class PostsUpdateRequestDto {
 
 
     @Builder
-    public PostsUpdateRequestDto(String topic, String title, String author, String bigCategory,
+    public PostsUpdateRequestDto(String topic, String title,String subTitle, String author, String bigCategory,
                                String smallCategory,Long currentPrice, Long endPrice, String content, String tag1,
                                String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate,
                                String filepath) {
 
         System.out.println(" PostsSaveRequestDto start");
+        this.subTitle=subTitle;
         this.title = title;
         this.author = author;
         this.bigCategory = bigCategory;
@@ -75,6 +76,7 @@ public class PostsUpdateRequestDto {
 
         System.out.println(" PostsSaveRequestDto to entity start");
         Posts post = Posts.builder()
+                .subTitle(subTitle)
                 .title(title)
                 .author(author)
                 .bigCategory(bigCategory)
@@ -82,13 +84,11 @@ public class PostsUpdateRequestDto {
                 .topic(topic)
                 .currentPrice(currentPrice)
                 .endPrice(endPrice)
-                //   .image(image)
                 .content(content)
                 .tag1(tag1)
                 .tag2(tag2)
                 .tag3(tag3)
                 .endDate(endDate)
-            //    .filename(filename)
                 .filepath(filepath)
                 .build();
         return post;

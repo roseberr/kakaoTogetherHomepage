@@ -85,12 +85,11 @@
 
 <div class="card-deck py-5 ">
     <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3  embed-responsive embed-responsive-16by9" >
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3  embed-responsive embed-responsive-16by9 " >
 
             <div th:each="post : ${posts}">
 
-
-                    <div class="card shadow-sm rounded  " >
+                    <div class="card shadow-sm rounded " >
                         <a th:href="@{/api/post/form(id=${post.board_id})}">
                         <!-- <p>"[[${post.filepath}]]" </p>-->
                         <!--<img th:src="[[${post.filepath}]]"  class="img-fluid img-thumbnail" alt="image"  th:if="${post.filepath != null}"/>-->
