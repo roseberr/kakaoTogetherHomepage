@@ -20,7 +20,26 @@
 
     <!--        <title>Page title         </title>                                -->
     <!--        필요하다면 개별 파일에 사용될 css/js 선언                               -->
+
+    <script type="text/javascript">
+
+function clip(){
+
+	var url = '';
+	var textarea = document.createElement("textarea");
+	document.body.appendChild(textarea);
+	url = window.document.location.href;
+	textarea.value = url;
+	textarea.select();
+	document.execCommand("copy");
+	document.body.removeChild(textarea);
+	alert("URL이 복사되었습니다.")
+}
+
+</script>
 </head>
+
+
 
 <body layout:fragment="content">
 
@@ -103,14 +122,13 @@ background-size: cover;
             응원하기</a>
 
 
-        <a href="#" class="btn btn-primary"> <img src="/icons/share-from-square-solid.svg" alt="" width="20"
-                                                  height="25">공유하기</a>
+        <a href="#" class="btn btn-primary" onclick="clip();return false;"> <img src="/icons/share-from-square-solid.svg" alt="" width="20"
+                                                  height="25">URL 주소복사</a>
 
         <a href="#" class="btn btn-primary active">기부하기</a>
 
     </div>
 </div>
-
 
 
 <script>

@@ -27,7 +27,6 @@ public class PostsSaveRequestDto {
 
     private String filepath;
 
-   // private String filename;
 
     private String content;
 

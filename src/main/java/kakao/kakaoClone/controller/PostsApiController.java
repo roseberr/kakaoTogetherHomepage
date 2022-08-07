@@ -55,9 +55,10 @@ public class PostsApiController {
 
     @PostMapping("/api/post")
     public String save(@ModelAttribute PostsSaveRequestDto requestDto, MultipartFile file) throws Exception {
-
         System.out.println("post start");
-
+        if(requestDto.getBigCategory()==null){
+            System.out.println("requestDto.getBigCategory():null");
+        }
 
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
@@ -66,13 +67,16 @@ public class PostsApiController {
         }
         postsService.save(requestDto, file);
 
+        String promotion="promotion";
 
         System.out.println("post end");
-        if (requestDto.bigCategory=="donationTogether"){
-            return "redirect:/";
+        if (requestDto.getBigCategory()==promotion){
+            return "redirect:/promotion";
+
         } else {
 
-            return "redirect:/promotion";
+            System.out.println(requestDto.getBigCategory());
+            return "redirect:/";
         }
     }
 
