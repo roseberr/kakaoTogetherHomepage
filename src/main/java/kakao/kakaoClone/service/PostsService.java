@@ -1,5 +1,6 @@
 package kakao.kakaoClone.service;
 
+
 import org.slf4j.Logger;
 import kakao.kakaoClone.domain.board.Posts;
 import kakao.kakaoClone.domain.board.PostsRepository;
