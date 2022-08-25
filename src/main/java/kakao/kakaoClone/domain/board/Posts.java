@@ -1,5 +1,6 @@
 package kakao.kakaoClone.domain.board;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import kakao.kakaoClone.domain.BaseTimeEntity;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,8 +21,10 @@ import javax.persistence.*;
 
 public class Posts extends BaseTimeEntity {
 
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="board_id")
     private long board_id;
 
     //@ManyToOne
