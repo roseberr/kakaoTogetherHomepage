@@ -50,6 +50,7 @@ public class PostsApiController {
     @PostMapping("/api/post")
     public String save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file) throws Exception {
         System.out.println("post start");
+
         if(requestDto.getBigCategory()==null){
             System.out.println("requestDto.getBigCategory():null");
         }
@@ -61,10 +62,10 @@ public class PostsApiController {
         }
         postService.save(requestDto, file,user.getId());
 
-        String promotion="promotion";
+        System.out.println(requestDto.getBigCategory());
 
         System.out.println("post end");
-        if (requestDto.getBigCategory()==promotion){
+        if (requestDto.getBigCategory()=="promotion"){
             return "redirect:/promotion";
 
         } else {
@@ -82,16 +83,22 @@ public class PostsApiController {
             model.addAttribute("post", new Post());
         } else {
             Post post = postRepository.findById(post_id).orElse(null);
+
+            /**
+            Long post_userID=post.getUser().getId();
+            model.addAttribute("post_")
+             */
             model.addAttribute("post", post);
 
         }
+
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         boolean like = false; // 비로그인 유저라면 무조건 like = false;
 
-        Long user_id=user.getId();
         if (user != null) {
 
+            Long user_id=user.getId();
             model.addAttribute("login_id",user_id );
             model.addAttribute("userName", user.getName());
 
@@ -106,11 +113,8 @@ public class PostsApiController {
         model.addAttribute("like", like);
 
 
-
-
         System.out.println("from controller getmapping end");
         return "post/postform.html";
-
 
     }
 
@@ -139,6 +143,7 @@ public class PostsApiController {
     @PutMapping("/api/post/modify/{id}")// 수정하기
     public String update(@ModelAttribute PostUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file, Model model) throws Exception {
         System.out.println("update putmapping start");
+
         postService.update(requestDto, file, id);
         System.out.println("update putmapping end");
 

@@ -33,29 +33,7 @@ public class PostService {
      * */
     @Transactional
     public void save(PostSaveRequestDto requestDto, MultipartFile file,Long user_id)throws Exception{
-/*
-       String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
-        //String projectPath="C:/webclone/upload";
 
-        UUID uuid=UUID.randomUUID();
-        //String fileName=uuid+"_"+file.getOriginalFilename();
-        String fileName=file.getOriginalFilename();
-
-
-        File saveFile=new File(projectPath,fileName);
-        if(!saveFile.isDirectory()){
-            saveFile.mkdirs();
-        }
-
-
-        file.transferTo(saveFile);
-
-
-        requestDto.setFilename(fileName);
-        //requestDto.setFilepath("files/"+fileName);
-
-        requestDto.setFilepath(projectPath+"\\"+fileName);
-*/
         System.out.println("PostService s3 start");
 
         String uploadUrl=s3Uploader.upload(file, "static");
@@ -92,38 +70,23 @@ public class PostService {
 
 
     @Transactional
-    public Post update(PostUpdateRequestDto requestDto, MultipartFile file, Long id)throws Exception{
-/*
-        String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
-        //String projectPath="C:/webclone/upload";
-
-        UUID uuid=UUID.randomUUID();
-        String fileName=uuid+"_"+file.getOriginalFilename();
-
-        File saveFile=new File(projectPath,fileName);
-        if(!saveFile.isDirectory()){
-            saveFile.mkdirs();
-        }
+    public Post update(PostUpdateRequestDto requestDto, MultipartFile file, Long post_id)throws Exception{
 
 
-        file.transferTo(saveFile);
+        // https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/static/
 
-        requestDto.setFilename(fileName);
-        requestDto.setFilepath(projectPath+"\\"+fileName);
-
-        */
         //파일업로드
         String uploadUrl=s3Uploader.upload(file, "static");
         requestDto.setFilepath(uploadUrl);
 
-
         //받아온 정보 update
-        Post post = postRepository.findById(id) .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        Post post = postRepository.findById(post_id) .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + post_id));
 
         post.setTopic(requestDto.getTopic());
         post.setBigCategory(requestDto.getBigCategory());
         post.setSmallCategory(requestDto.getSmallCategory());
         post.setTitle(requestDto.getTitle());
+        post.setSubTitle(requestDto.getSubTitle());
         post.setContent(requestDto.getContent());
         post.setTag1(requestDto.getTag1());
         post.setTag2(requestDto.getTag2());
@@ -132,8 +95,9 @@ public class PostService {
         post.setEndPrice(requestDto.getEndPrice());
         post.setCurrentPrice(requestDto.getCurrentPrice());
 
-        System.out.println("update end");
+        post.setFilepath(uploadUrl);
 
+        System.out.println("update end");
 
         return post;
     }

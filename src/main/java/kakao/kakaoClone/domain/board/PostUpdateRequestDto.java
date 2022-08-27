@@ -27,7 +27,6 @@ public class PostUpdateRequestDto {
 
     private String filepath;
 
- //   private String filename;
 
     private String content;
 

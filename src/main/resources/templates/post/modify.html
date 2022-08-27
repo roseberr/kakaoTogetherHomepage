@@ -154,7 +154,7 @@
 
                     <div class="col-12 form-group">
                         <label for="file" class="form-label">썸네일 등록</label>
-                        <input type="file" name="file" class="form-control" id="file" th:value="${post.filepath}" required>
+                        <input type="file" name="file" class="form-control" id="file"  required>
                         <!--th:field="*{image}"-->
                         <div class="invalid-feedback">
                             Please select a file.
@@ -166,6 +166,7 @@
                         <input type="text" class="form-control" id="subTitle" name="subTitle"
 
                                th:value="${post.subTitle}"
+
                                required>
                         <div class="invalid-feedback">
                             Please enter a subtitle;
@@ -220,9 +221,7 @@
                         </div>
                     </div>
 
-
                     <hr class="my-4">
-
 
                     <!-- <a class="btn btn-secondary my-2 my-sm-0 mx-2" href="/">메인화면으로</a>-->
 
@@ -238,7 +237,6 @@
         </div>
 
     </main>
-
 
     <br>
     <br>

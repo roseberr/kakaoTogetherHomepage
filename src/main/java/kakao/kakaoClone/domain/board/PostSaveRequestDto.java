@@ -48,9 +48,9 @@ public class PostSaveRequestDto {
     @Builder
     public PostSaveRequestDto(String topic, String title, String subTitle, String author, String bigCategory,
                               String smallCategory, Long currentPrice, Long endPrice, String content, String tag1,
-                              String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate
-
-    ) {
+                              String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate,
+                              String filepath
+                              )  {
 
         System.out.println(" PostSaveRequestDto start");
         this.title = title;
