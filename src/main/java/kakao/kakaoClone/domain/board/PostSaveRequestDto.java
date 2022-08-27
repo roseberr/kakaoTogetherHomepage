@@ -1,6 +1,7 @@
 package kakao.kakaoClone.domain.board;
 
 
+import kakao.kakaoClone.domain.user.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -48,7 +49,8 @@ public class PostSaveRequestDto {
     public PostSaveRequestDto(String topic, String title, String subTitle, String author, String bigCategory,
                               String smallCategory, Long currentPrice, Long endPrice, String content, String tag1,
                               String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate
-                              ) {
+
+    ) {
 
         System.out.println(" PostSaveRequestDto start");
         this.title = title;
@@ -69,11 +71,13 @@ public class PostSaveRequestDto {
         this.modifiedDate = modifiedDate;
         //this.filename=filename;
         this.filepath=filepath;
+        
+
         System.out.println(" PostSaveRequestDto 생성자 end");
 
     }
 
-    public Post toEntity() {
+    public Post toEntity(User user) {
 
         System.out.println(" PostSaveRequestDto to entity start");
         Post post = Post.builder()
@@ -91,6 +95,7 @@ public class PostSaveRequestDto {
                 .tag2(tag2)
                 .tag3(tag3)
                 .endDate(endDate)
+
                // .filename(filename)
                 .filepath(filepath)
                 .build();

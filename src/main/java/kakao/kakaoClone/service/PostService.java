@@ -28,8 +28,11 @@ public class PostService {
 
     private final UserLikePostRepository userLikePostRepository;
 
+    /**
+     * request dto , file,user_id 입력받아서 save service
+     * */
     @Transactional
-    public void save(PostSaveRequestDto requestDto, MultipartFile file)throws Exception{
+    public void save(PostSaveRequestDto requestDto, MultipartFile file,Long user_id)throws Exception{
 /*
        String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
         //String projectPath="C:/webclone/upload";
@@ -59,8 +62,14 @@ public class PostService {
         requestDto.setFilepath(uploadUrl);
        // https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/static/
         System.out.println("PostService s3 end");
-        postRepository.save(requestDto.toEntity());
-        System.out.println("save end");
+
+        User user=userRepository.findById(user_id).orElseThrow(() ->
+                        new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+
+        Post post=requestDto.toEntity(user);
+
+        post.setUser(user);
+  ;     postRepository.save(post).getId();
     }
 
     @Transactional(readOnly = true)
