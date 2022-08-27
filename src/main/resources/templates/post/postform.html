@@ -96,6 +96,7 @@ background-size: cover;
         </div>
         <div class="col-auto">
             <span>작성 날짜:</span>
+
             <span class="h6"
                   th:text="${post.createdDate}"></span>
         </div>
@@ -139,18 +140,6 @@ background-size: cover;
 
 <div class="container">
     <div style="position: fixed; right: 3rem; bottom: 1rem;">
-
-
-
-        <!--
-        <a type="button" class="btn btn-secondary" style="background-color:#F15F5F"  th:href="@{/api/post/modify(id=${post.board_id})}">수정</a>
-
-        <form id="delete-form" th:action="|/api/post/modify/${post.board_id}|" method="post">
-        <input type="hidden" name="_method" value="delete"/>
-        <button type=" submit" class="btn btn-secondary"style="background-color:#F29661"  >삭제</button>
-        </form>
-
-     -->
 
         <input type="hidden" id="postId" th:value="${post.id}">
         <div sec:authorize-expr="isAuthenticated()" or th:if="${#strings.equals(post.id,login_id)}" class="d-block">
