@@ -6,7 +6,7 @@ import kakao.kakaoClone.domain.board.Post;
 import kakao.kakaoClone.domain.board.PostRepository;
 import kakao.kakaoClone.domain.board.PostSaveRequestDto;
 import kakao.kakaoClone.domain.board.PostUpdateRequestDto;
-import kakao.kakaoClone.service.PostsService;
+import kakao.kakaoClone.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -27,7 +27,7 @@ import java.net.MalformedURLException;
 public class PostsApiController {
 
     private final PostRepository postRepository;
-    private final PostsService postsService;
+    private final PostService postService;
     private final HttpSession httpSession;
 
     @GetMapping("/api/post")
@@ -57,7 +57,7 @@ public class PostsApiController {
         if (user != null) {
             requestDto.setAuthor(user.getName());
         }
-        postsService.save(requestDto, file);
+        postService.save(requestDto, file);
 
         String promotion="promotion";
 
@@ -73,21 +73,39 @@ public class PostsApiController {
     }
 
     @GetMapping("/api/post/form")
-    public String form(Model model, @RequestParam(required = false) Long id) {
+    public String form(Model model, @RequestParam(required = false) Long post_id) {
 
         System.out.println("from controller getmapping start");
-        if (id == null) {
+        if (post_id == null) {
             model.addAttribute("post", new Post());
         } else {
-            Post post = postRepository.findById(id).orElse(null);
+            Post post = postRepository.findById(post_id).orElse(null);
             model.addAttribute("post", post);
 
         }
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
+        boolean like = false; // 비로그인 유저라면 무조건 like = false;
+
+        Long user_id=user.getId();
         if (user != null) {
+
+            model.addAttribute("login_id",user_id );
             model.addAttribute("userName", user.getName());
+
+            /**조회수 업데이트**/
+            postService.updateView(post_id);
+
+
+            /** 현재 로그인한 유저가 이 게시물을 좋아요 했는지 안 했는지 여부 확인 **/
+            like = postService.findLike(post_id, user_id);
         }
+
+        model.addAttribute("like", like);
+
+
+
+
         System.out.println("from controller getmapping end");
         return "post/postform.html";
 
@@ -97,7 +115,7 @@ public class PostsApiController {
 
     //수정하기 getmapping
     @GetMapping("/api/post/modify")
-    public String one(Model model, @RequestParam Long id) {
+    public String one(Model model, @RequestParam Long post_id) {
         System.out.println("/api/post/list/{board_id} 수정하기 화면 시작");
 
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
@@ -106,10 +124,10 @@ public class PostsApiController {
             model.addAttribute("userName", user.getName());
         }
 
-        if (id == null) {
+        if (post_id == null) {
             model.addAttribute("post", new Post());
         } else {
-            Post post = postRepository.findById(id).orElse(null);
+            Post post = postRepository.findById(post_id).orElse(null);
             model.addAttribute("post", post);
         }
         return "post/modify.html";
@@ -119,7 +137,7 @@ public class PostsApiController {
     @PutMapping("/api/post/modify/{id}")// 수정하기
     public String update(@ModelAttribute PostUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file, Model model) throws Exception {
         System.out.println("update putmapping start");
-        postsService.update(requestDto, file, id);
+        postService.update(requestDto, file, id);
         System.out.println("update putmapping end");
 
         return "redirect:/";
@@ -130,7 +148,7 @@ public class PostsApiController {
     @DeleteMapping("/api/post/modify/{id}")
     String deletePost(@PathVariable Long id) {
         System.out.println("/api/post/list/{board_id} 삭제하기 화면 시작");
-        postsService.deleteBoard(id);
+        postService.deleteBoard(id);
         return "redirect:/";
     }
 

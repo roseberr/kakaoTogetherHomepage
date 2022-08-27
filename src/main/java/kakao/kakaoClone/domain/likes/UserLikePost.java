@@ -38,10 +38,9 @@ public class UserLikePost {
     private LocalDateTime localDateTime;
 
     @Builder
-    public UserLikePost(Post post, User user, LocalDateTime localDateTime){
+    public UserLikePost( User user,Post post){
         this.post = post;
         this.user = user;
-        this.localDateTime=localDateTime;
     }
 
 }

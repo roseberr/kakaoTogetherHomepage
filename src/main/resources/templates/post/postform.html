@@ -97,9 +97,9 @@ background-size: cover;
         </form>
 
      -->
-        <form  th:action="|/api/post/modify/${post.board_id}|" method="post">
+        <form  th:action="|/api/post/modify/${post.id}|" method="post">
 
-        <a type="button" class="btn btn-secondary" style="background-color:#F15F5F"  th:href="@{/api/post/modify(id=${post.board_id})}">수정</a>
+        <a type="button" class="btn btn-secondary" style="background-color:#F15F5F"  th:href="@{/api/post/modify(post_id=${post.id})}">수정</a>
 
             <form action="#" method="post">
             <input type="hidden" name="_method" value="delete"/>

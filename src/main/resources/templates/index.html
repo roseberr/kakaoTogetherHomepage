@@ -19,7 +19,6 @@
 
 <body layout:fragment="content">
 
-
 <header class="d-flex flex-wrap align-items-center justify-content-center  py-3 mb-4 border-bottom bg-light">
 
 
@@ -73,13 +72,12 @@
 <!-- 총 개수 확인-->
 
 <div class="container">
+
     <h2>게시판</h2>
     <div>총 건수 :<span th:text="${#lists.size(post)}"></span></div>
     <a> login as: <span id="user" th:text="${userName}"></span></a>
 
-
 </div>
-
 
 <!-- 총 개수 확인 끝 -->
 
@@ -90,7 +88,7 @@
             <div th:each="post : ${post}">
 
                     <div class="card shadow-sm rounded " >
-                        <a th:href="@{/api/post/form(id=${post.board_id})}">
+                        <a th:href="@{/api/post/form(post_id=${post.id})}">
                         <!-- <p>"[[${post.filepath}]]" </p>-->
                         <!--<img th:src="[[${post.filepath}]]"  class="img-fluid img-thumbnail" alt="image"  th:if="${post.filepath != null}"/>-->
                         <!--<resource mapping="/files/*" location="/files/"/>-->

@@ -5,6 +5,10 @@ import kakao.kakaoClone.domain.board.Post;
 import kakao.kakaoClone.domain.board.PostRepository;
 import kakao.kakaoClone.domain.board.PostSaveRequestDto;
 import kakao.kakaoClone.domain.board.PostUpdateRequestDto;
+import kakao.kakaoClone.domain.likes.UserLikePost;
+import kakao.kakaoClone.domain.likes.UserLikePostRepository;
+import kakao.kakaoClone.domain.user.User;
+import kakao.kakaoClone.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +20,13 @@ import java.util.List;
 @Service
 
 
-public class PostsService {
+public class PostService {
     private final PostRepository postRepository;
     private final S3Uploader s3Uploader;
+
+    private final UserRepository userRepository;
+
+    private final UserLikePostRepository userLikePostRepository;
 
     @Transactional
     public void save(PostSaveRequestDto requestDto, MultipartFile file)throws Exception{
@@ -127,8 +135,55 @@ public class PostsService {
         postRepository.deleteById(id);
     }
 
-}
 
+    /** ========================= 게시물 좋아요 및 조회수 처리 ========================= **/
+
+
+    /** 글 좋아요 **/
+    @Transactional
+    public boolean saveLike(Long post_id, Long user_id) {
+
+        /** 로그인한 유저가 해당 게시물을 좋아요 했는지 안 했는지 확인 **/
+        if(!findLike(post_id, user_id)){
+
+            /* 좋아요 하지 않은 게시물이면 좋아요 추가, true 반환 */
+            User user = userRepository.findById(user_id).orElseThrow(() ->
+                    new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+            Post post = postRepository.findById(post_id).orElseThrow(() ->
+                    new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
+
+            /* 좋아요 엔티티 생성 */
+            UserLikePost userLikePost = new UserLikePost(user, post);
+            userLikePostRepository.save(userLikePost);
+            postRepository.plusLike(post_id);
+
+            return true;
+        } else {
+
+            /* 좋아요 한 게시물이면 좋아요 삭제, false 반환 */
+            userLikePostRepository.deleteByPost_IdAndUser_Id(post_id, user_id);
+            postRepository.minusLike(post_id);
+
+            return false;
+        }
+    }
+
+    /** 글 좋아요 확인 **/
+    @Transactional
+    public boolean findLike(Long post_id, Long user_id) {
+
+        return userLikePostRepository.existsByPost_IdAndUser_Id(post_id,user_id);
+
+    }
+
+    /** 글 조회수 업데이트 **/
+    @Transactional
+    public void updateView(Long post_id) {
+        postRepository.updateView(post_id);
+    }
+
+
+}
 
 /*
 
