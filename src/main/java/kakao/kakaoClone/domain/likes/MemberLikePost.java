@@ -1,6 +1,6 @@
 package kakao.kakaoClone.domain.likes;
 
-import kakao.kakaoClone.domain.board.Posts;
+import kakao.kakaoClone.domain.board.Post;
 import kakao.kakaoClone.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +25,7 @@ public class MemberLikePost {
 
     @JoinColumn(name="board_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Posts posts;
+    private Post post;
 
 
     @JoinColumn(name="user_id")
@@ -42,8 +42,8 @@ public class MemberLikePost {
 
 
     @Builder
-    public MemberLikePost(Posts posts, User user, LocalDateTime localDateTime){
-        this.posts=posts;
+    public MemberLikePost(Post post, User user, LocalDateTime localDateTime){
+        this.post = post;
         this.user=user;
         this.localDateTime=localDateTime;
     }

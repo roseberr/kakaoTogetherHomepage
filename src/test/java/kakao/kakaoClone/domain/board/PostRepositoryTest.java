@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PostsRepositoryTest {
+class PostRepositoryTest {
     @Autowired
-    PostsRepository postsRepository;
+    PostRepository postRepository;
 
     @AfterAll
     public void cleanup(){
-        postsRepository.deleteAll();
+        postRepository.deleteAll();
     }
     @Test
     public void 게시글_불러오기(){

@@ -1,30 +1,27 @@
 package kakao.kakaoClone.service;
 
 
-import org.slf4j.Logger;
-import kakao.kakaoClone.domain.board.Posts;
-import kakao.kakaoClone.domain.board.PostsRepository;
-import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
-import kakao.kakaoClone.domain.board.PostsUpdateRequestDto;
+import kakao.kakaoClone.domain.board.Post;
+import kakao.kakaoClone.domain.board.PostRepository;
+import kakao.kakaoClone.domain.board.PostSaveRequestDto;
+import kakao.kakaoClone.domain.board.PostUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
 
 
 public class PostsService {
-    private final PostsRepository postsRepository;
+    private final PostRepository postRepository;
     private final S3Uploader s3Uploader;
 
     @Transactional
-    public void save(PostsSaveRequestDto requestDto, MultipartFile file)throws Exception{
+    public void save(PostSaveRequestDto requestDto, MultipartFile file)throws Exception{
 /*
        String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
         //String projectPath="C:/webclone/upload";
@@ -54,31 +51,31 @@ public class PostsService {
         requestDto.setFilepath(uploadUrl);
        // https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/static/
         System.out.println("PostService s3 end");
-        postsRepository.save(requestDto.toEntity());
+        postRepository.save(requestDto.toEntity());
         System.out.println("save end");
     }
 
     @Transactional(readOnly = true)
-    public List<Posts> getBoards() {
-        List<Posts> post = postsRepository.findAll();
+    public List<Post> getBoards() {
+        List<Post> post = postRepository.findAll();
         return post;
     }
 
     @Transactional(readOnly = true)
-    public Posts getBoard(Long id) {
-       Posts post= postsRepository.findById(id).get();
+    public Post getBoard(Long id) {
+       Post post= postRepository.findById(id).get();
         return post;
     }
 
 
     @Transactional
-    public Posts save(Posts board) {
-        return postsRepository.save(board);
+    public Post save(Post board) {
+        return postRepository.save(board);
     }
 
 
     @Transactional
-    public Posts update(PostsUpdateRequestDto requestDto, MultipartFile file, Long id)throws Exception{
+    public Post update(PostUpdateRequestDto requestDto, MultipartFile file, Long id)throws Exception{
 /*
         String projectPath=System.getProperty("user.dir")+ "\\src\\main\\resources\\static\\files";
         //String projectPath="C:/webclone/upload";
@@ -104,7 +101,7 @@ public class PostsService {
 
 
         //받아온 정보 update
-        Posts post = postsRepository.findById(id) .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        Post post = postRepository.findById(id) .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         post.setTopic(requestDto.getTopic());
         post.setBigCategory(requestDto.getBigCategory());
@@ -127,7 +124,7 @@ public class PostsService {
 
     @Transactional
     public void deleteBoard(Long id) {
-        postsRepository.deleteById(id);
+        postRepository.deleteById(id);
     }
 
 }

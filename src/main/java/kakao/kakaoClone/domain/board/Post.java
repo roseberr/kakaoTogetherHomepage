@@ -1,18 +1,13 @@
 package kakao.kakaoClone.domain.board;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 import kakao.kakaoClone.domain.BaseTimeEntity;
-import kakao.kakaoClone.domain.likes.MemberLikePost;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -20,7 +15,7 @@ import java.util.List;
 @Entity
 @EntityListeners(AuditingEntityListener.class) /* JPA에게 해당 Entity는 Auditiong 기능을 사용함을 알립니다. */
 
-public class Posts extends BaseTimeEntity {
+public class Post extends BaseTimeEntity {
 
 
     @Id
@@ -86,9 +81,9 @@ public class Posts extends BaseTimeEntity {
 
 
     @Builder
-    public Posts(String topic, String bigCategory , String smallCategory, String title,String subTitle,
-                 String content, String author, String tag1, String tag2, String tag3,
-                 String endDate, Long endPrice,Long currentPrice,  String filepath) {
+    public Post(String topic, String bigCategory , String smallCategory, String title, String subTitle,
+                String content, String author, String tag1, String tag2, String tag3,
+                String endDate, Long endPrice, Long currentPrice, String filepath) {
         this.title = title;
         this.author = author;
 

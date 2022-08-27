@@ -1,13 +1,12 @@
 package kakao.kakaoClone.controller;
 
 import kakao.kakaoClone.config.auth.SessionUser;
-import kakao.kakaoClone.domain.board.Posts;
-import kakao.kakaoClone.domain.board.PostsRepository;
+import kakao.kakaoClone.domain.board.Post;
+import kakao.kakaoClone.domain.board.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -20,7 +19,7 @@ public class HomeController {
 
     private final HttpSession httpSession;
 
-    private final PostsRepository postsRepository;
+    private final PostRepository postRepository;
     @GetMapping("/")
     public String index(Model model){
            SessionUser user=(SessionUser) httpSession.getAttribute("user");
@@ -28,9 +27,9 @@ public class HomeController {
             model.addAttribute("userName",user.getName());
         }
 
-        List<Posts> posts= postsRepository.findByBigCategory("donationTogether");
+        List<Post> posts= postRepository.findByBigCategory("donationTogether");
         if(posts!=null){
-        model.addAttribute("posts",posts);
+        model.addAttribute("post",posts);
         }
 
 
@@ -44,9 +43,9 @@ public class HomeController {
             model.addAttribute("userName",user.getName());
         }
 
-        List<Posts> posts= postsRepository.findByBigCategoryAndSmallCategory("donationTogether","모금중");
+        List<Post> posts= postRepository.findByBigCategoryAndSmallCategory("donationTogether","모금중");
         if(posts!=null){
-            model.addAttribute("posts",posts);
+            model.addAttribute("post",posts);
         }
 
 
@@ -59,9 +58,9 @@ public class HomeController {
             model.addAttribute("userName",user.getName());
         }
 
-        List<Posts> posts= postsRepository.findByBigCategoryAndSmallCategory("donationTogether","모금후기");
+        List<Post> posts= postRepository.findByBigCategoryAndSmallCategory("donationTogether","모금후기");
         if(posts!=null){
-            model.addAttribute("posts",posts);
+            model.addAttribute("post",posts);
         }
 
 
@@ -75,9 +74,9 @@ public class HomeController {
             model.addAttribute("userName",user.getName());
         }
 
-        List<Posts> posts= postsRepository.findByBigCategory("promotion");
+        List<Post> posts= postRepository.findByBigCategory("promotion");
         if(posts!=null){
-            model.addAttribute("posts",posts);
+            model.addAttribute("post",posts);
         }
 
 

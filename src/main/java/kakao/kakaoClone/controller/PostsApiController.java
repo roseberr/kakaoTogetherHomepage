@@ -2,30 +2,22 @@ package kakao.kakaoClone.controller;
 
 
 import kakao.kakaoClone.config.auth.SessionUser;
-import kakao.kakaoClone.domain.board.Posts;
-import kakao.kakaoClone.domain.board.PostsRepository;
-import kakao.kakaoClone.domain.board.PostsSaveRequestDto;
-import kakao.kakaoClone.domain.board.PostsUpdateRequestDto;
+import kakao.kakaoClone.domain.board.Post;
+import kakao.kakaoClone.domain.board.PostRepository;
+import kakao.kakaoClone.domain.board.PostSaveRequestDto;
+import kakao.kakaoClone.domain.board.PostUpdateRequestDto;
 import kakao.kakaoClone.service.PostsService;
 import lombok.RequiredArgsConstructor;
-import org.h2.engine.Session;
-import org.h2.util.IOUtils;
 import org.springframework.context.annotation.ComponentScan;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 
 @RequiredArgsConstructor
@@ -34,7 +26,7 @@ import java.net.MalformedURLException;
 
 public class PostsApiController {
 
-    private final PostsRepository postsRepository;
+    private final PostRepository postRepository;
     private final PostsService postsService;
     private final HttpSession httpSession;
 
@@ -42,7 +34,7 @@ public class PostsApiController {
     public String posts(Model model) {
 
         System.out.println("mapping start");
-        model.addAttribute("requestDto", new PostsSaveRequestDto());
+        model.addAttribute("requestDto", new PostSaveRequestDto());
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if (user != null) {
@@ -54,7 +46,7 @@ public class PostsApiController {
     }
 
     @PostMapping("/api/post")
-    public String save(@ModelAttribute PostsSaveRequestDto requestDto, MultipartFile file) throws Exception {
+    public String save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file) throws Exception {
         System.out.println("post start");
         if(requestDto.getBigCategory()==null){
             System.out.println("requestDto.getBigCategory():null");
@@ -85,9 +77,9 @@ public class PostsApiController {
 
         System.out.println("from controller getmapping start");
         if (id == null) {
-            model.addAttribute("post", new Posts());
+            model.addAttribute("post", new Post());
         } else {
-            Posts post = postsRepository.findById(id).orElse(null);
+            Post post = postRepository.findById(id).orElse(null);
             model.addAttribute("post", post);
 
         }
@@ -115,9 +107,9 @@ public class PostsApiController {
         }
 
         if (id == null) {
-            model.addAttribute("post", new Posts());
+            model.addAttribute("post", new Post());
         } else {
-            Posts post = postsRepository.findById(id).orElse(null);
+            Post post = postRepository.findById(id).orElse(null);
             model.addAttribute("post", post);
         }
         return "post/modify.html";
@@ -125,7 +117,7 @@ public class PostsApiController {
 
 
     @PutMapping("/api/post/modify/{id}")// 수정하기
-    public String update(@ModelAttribute PostsUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file,Model model) throws Exception {
+    public String update(@ModelAttribute PostUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file, Model model) throws Exception {
         System.out.println("update putmapping start");
         postsService.update(requestDto, file, id);
         System.out.println("update putmapping end");

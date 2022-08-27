@@ -1,15 +1,15 @@
 package kakao.kakaoClone.domain.board;
 
+
 import lombok.*;
 
 import java.time.LocalDateTime;
-
 
 @Getter
 @ToString
 @NoArgsConstructor
 @Setter
-public class PostsUpdateRequestDto {
+public class PostSaveRequestDto {
 
     private String subTitle;
     private String title;
@@ -27,7 +27,6 @@ public class PostsUpdateRequestDto {
 
     private String filepath;
 
- //   private String filename;
 
     private String content;
 
@@ -44,14 +43,14 @@ public class PostsUpdateRequestDto {
 
 
     @Builder
-    public PostsUpdateRequestDto(String topic, String title,String subTitle, String author, String bigCategory,
-                               String smallCategory,Long currentPrice, Long endPrice, String content, String tag1,
-                               String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate,
-                               String filepath) {
+    public PostSaveRequestDto(String topic, String title, String subTitle, String author, String bigCategory,
+                              String smallCategory, Long currentPrice, Long endPrice, String content, String tag1,
+                              String tag2, String tag3, String endDate, LocalDateTime createdDate, LocalDateTime modifiedDate
+                              ) {
 
-        System.out.println(" PostsSaveRequestDto start");
-        this.subTitle=subTitle;
+        System.out.println(" PostSaveRequestDto start");
         this.title = title;
+        this.subTitle=subTitle;
         this.author = author;
         this.bigCategory = bigCategory;
         this.smallCategory = smallCategory;
@@ -66,29 +65,31 @@ public class PostsUpdateRequestDto {
         this.endDate = endDate;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
-    //    this.filename=filename;
+        //this.filename=filename;
         this.filepath=filepath;
-        System.out.println(" PostsSaveRequestDto 생성자 end");
+        System.out.println(" PostSaveRequestDto 생성자 end");
 
     }
 
-    public Posts toEntity() {
+    public Post toEntity() {
 
-        System.out.println(" PostsSaveRequestDto to entity start");
-        Posts post = Posts.builder()
-                .subTitle(subTitle)
+        System.out.println(" PostSaveRequestDto to entity start");
+        Post post = Post.builder()
                 .title(title)
+                .subTitle(subTitle)
                 .author(author)
                 .bigCategory(bigCategory)
                 .smallCategory(smallCategory)
                 .topic(topic)
                 .currentPrice(currentPrice)
                 .endPrice(endPrice)
+                //   .image(image)
                 .content(content)
                 .tag1(tag1)
                 .tag2(tag2)
                 .tag3(tag3)
                 .endDate(endDate)
+               // .filename(filename)
                 .filepath(filepath)
                 .build();
         return post;
