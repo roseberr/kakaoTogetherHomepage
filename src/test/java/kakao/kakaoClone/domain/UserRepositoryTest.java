@@ -1,9 +1,9 @@
 package kakao.kakaoClone.domain;
 
 
+import kakao.kakaoClone.domain.user.User;
 import org.aspectj.lang.annotation.After;
 import org.junit.jupiter.api.Test;
-import kakao.kakaoClone.domain.user.User;
 import kakao.kakaoClone.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 

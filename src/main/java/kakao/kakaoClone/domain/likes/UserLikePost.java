@@ -18,33 +18,29 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 
-public class MemberLikePost {
+public class UserLikePost {
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private  int id;
+    private Long id;
+
+
+
+    @JoinColumn(name="user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
 
     @JoinColumn(name="board_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
-
-    @JoinColumn(name="user_id")
-   // @JsonIgnoreProperties({"PostList"})
-    // 이때 User를 보면, User 엔티티에서는 이미 postList로 관련 Post를 참조하고 있다. 그런데 MemberLikePost 엔티티에서 또 Post를 참조한다.
-    // 이러한 현상으로 발생할 수 있는 오류를 없애기 위해 JsonIgnoreProperties로 무시해 주었다.
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-
-
-
     private LocalDateTime localDateTime;
 
-
     @Builder
-    public MemberLikePost(Post post, User user, LocalDateTime localDateTime){
+    public UserLikePost(Post post, User user, LocalDateTime localDateTime){
         this.post = post;
-        this.user=user;
+        this.user = user;
         this.localDateTime=localDateTime;
     }
 

@@ -1,6 +1,8 @@
 package kakao.kakaoClone.domain.board;
 
 import kakao.kakaoClone.domain.BaseTimeEntity;
+import kakao.kakaoClone.domain.likes.UserLikePost;
+import kakao.kakaoClone.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +24,7 @@ public class Post extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="post_id")
-    private long board_id;
+    private long id;
 
     //@ManyToOne
     //@JoinColumn(name="MEMBER_ID")
@@ -78,7 +81,18 @@ public class Post extends BaseTimeEntity {
     private Long currentPrice;
 
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int viewCount;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int likeCount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserLikePost> memberLikePost;
 
     @Builder
     public Post(String topic, String bigCategory , String smallCategory, String title, String subTitle,

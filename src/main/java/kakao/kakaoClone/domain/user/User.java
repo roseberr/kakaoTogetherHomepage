@@ -1,9 +1,12 @@
 package kakao.kakaoClone.domain.user;
 
 import kakao.kakaoClone.domain.BaseTimeEntity;
+import kakao.kakaoClone.domain.board.Post;
+import kakao.kakaoClone.domain.likes.UserLikePost;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -32,11 +35,20 @@ public class User extends BaseTimeEntity {
     @Column(nullable = true)
     private Role role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
+    private List<Post> post;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
+    private List<UserLikePost> like;
+
 
 
 
     @Builder
-    public User(String name,String picture ,String email,Role role){
+    public User(String name, String picture , String email, Role role){
         this.name = name;
         this.picture=picture;
         this.email = email;

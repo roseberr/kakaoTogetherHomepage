@@ -1,8 +1,8 @@
 package kakao.kakaoClone.config.auth.dto;
 
 
-import kakao.kakaoClone.domain.user.Role;
 import kakao.kakaoClone.domain.user.User;
+import kakao.kakaoClone.domain.user.Role;
 import lombok.Builder;
 import lombok.Getter;
 
