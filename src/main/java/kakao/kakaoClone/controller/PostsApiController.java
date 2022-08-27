@@ -73,7 +73,7 @@ public class PostsApiController {
             return "redirect:/";
         }
     }
-
+    /**postform 등록하기ㅣ*/
     @GetMapping("/api/post/form")
     public String form(Model model, @RequestParam(required = false) Long post_id) {
 
