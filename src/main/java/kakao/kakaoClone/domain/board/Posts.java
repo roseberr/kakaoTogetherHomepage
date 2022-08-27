@@ -3,6 +3,7 @@ package kakao.kakaoClone.domain.board;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import kakao.kakaoClone.domain.BaseTimeEntity;
+import kakao.kakaoClone.domain.likes.MemberLikePost;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="board_id")
+    @Column(name="post_id")
     private long board_id;
 
     //@ManyToOne
@@ -80,6 +81,9 @@ public class Posts extends BaseTimeEntity {
 
     @Column(length=500,nullable = false)
     private Long currentPrice;
+
+
+
 
     @Builder
     public Posts(String topic, String bigCategory , String smallCategory, String title,String subTitle,
