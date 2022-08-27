@@ -42,6 +42,8 @@ public class PostSaveRequestDto {
     private LocalDateTime modifiedDate;
 
 
+
+
     @Builder
     public PostSaveRequestDto(String topic, String title, String subTitle, String author, String bigCategory,
                               String smallCategory, Long currentPrice, Long endPrice, String content, String tag1,

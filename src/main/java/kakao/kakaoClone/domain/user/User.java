@@ -42,6 +42,7 @@ public class User extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id asc")
+
     private List<UserLikePost> like;
 
 

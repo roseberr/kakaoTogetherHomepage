@@ -57,8 +57,6 @@ public class Post extends BaseTimeEntity {
     @Column(length=500)
     private String filepath;
 
-
-
     @Column(length=500, nullable = false)
     private String tag1;
 
@@ -86,9 +84,14 @@ public class Post extends BaseTimeEntity {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int likeCount;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
+    private List<Post> post;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLikePost> memberLikePost;

@@ -123,7 +123,6 @@ public class PostService {
         post.setEndPrice(requestDto.getEndPrice());
         post.setCurrentPrice(requestDto.getCurrentPrice());
 
-
         System.out.println("update end");
 
 

@@ -30,6 +30,7 @@ public class PostsApiController {
     private final PostService postService;
     private final HttpSession httpSession;
 
+    /** 등록하기 getmapping  */
     @GetMapping("/api/post")
     public String posts(Model model) {
 
@@ -45,6 +46,7 @@ public class PostsApiController {
         return "post/register.html";
     }
 
+    /** 등록하기 postmapping  */
     @PostMapping("/api/post")
     public String save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file) throws Exception {
         System.out.println("post start");
@@ -57,7 +59,7 @@ public class PostsApiController {
         if (user != null) {
             requestDto.setAuthor(user.getName());
         }
-        postService.save(requestDto, file);
+        postService.save(requestDto, file,user.getId());
 
         String promotion="promotion";
 
