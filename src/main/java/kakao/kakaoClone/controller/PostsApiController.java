@@ -6,6 +6,9 @@ import kakao.kakaoClone.domain.board.Post;
 import kakao.kakaoClone.domain.board.PostRepository;
 import kakao.kakaoClone.domain.board.PostSaveRequestDto;
 import kakao.kakaoClone.domain.board.PostUpdateRequestDto;
+import kakao.kakaoClone.domain.comment.CommentDto;
+import kakao.kakaoClone.domain.comment.CommentRepository;
+import kakao.kakaoClone.service.CommentService;
 import kakao.kakaoClone.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.net.MalformedURLException;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -29,6 +33,10 @@ public class PostsApiController {
     private final PostRepository postRepository;
     private final PostService postService;
     private final HttpSession httpSession;
+
+    private final CommentService commentService;
+
+    private final CommentRepository commentRepository;
 
     /** 등록하기 getmapping  */
     @GetMapping("/api/post")
@@ -91,7 +99,7 @@ public class PostsApiController {
             model.addAttribute("post", post);
 
         }
-
+        /** 좋아요 업데이트**/
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         boolean like = false; // 비로그인 유저라면 무조건 like = false;
@@ -112,6 +120,9 @@ public class PostsApiController {
 
         model.addAttribute("like", like);
 
+        /** 댓글 DTO 반환 */
+        List<CommentDto.ResponseDto> commentListDto = commentService.findAllByPost(post_id);
+        model.addAttribute("commentList", commentListDto);
 
         System.out.println("from controller getmapping end");
         return "post/postform.html";

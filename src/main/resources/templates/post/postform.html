@@ -41,6 +41,8 @@ function clip(){
 
 </script>
 
+<meta name="_csrf" th:content="${_csrf?.token}">
+<meta name="_csrf_header" th:content="${_csrf?.headerName}">
 
 
 </head>
@@ -178,12 +180,103 @@ background-size: cover;
     </div>
 </div>
 
+
+<!-- 댓글 부분 -->
+
+<hr style="solid-color: #D3D3D3">
+<div id="comment-write" class="m-2 container">
+    <div class="row">
+                                <span sec:authorize-expr="isAuthenticated()">
+                                    <input type="hidden" id="commentWriter" th:value="${login_id}">
+                                    <div class="col-md-6">
+                                        <div class="input-group input-group-dynamic">
+                                            <label class="form-label">댓글 작성</label>
+                                            <input type="text" class="form-control" id="commentContent">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="col-auto btn btn-primary" id="comment-write-btn">댓글 등록</button>
+                                    </div>
+                                </span>
+        <!-- 댓글 리스트 -->
+        <div id="comment-list" class="m-2 container">
+            <div class="container">
+                <div class="row" th:each="comment: ${commentList}">
+                    <div class="col-md-6">
+                        <div
+                                th:text="${comment.name} +'  '+${comment.createdDate}"></div>
+                        <div class="text-dark" th:text="${comment.content}"></div>
+                        <div><input class="btn btn-danger" type="button" sec:authorize-expr="isAuthenticated()" or th:if="${#strings.equals(comment.getMemberId(),login_id)}"
+                                    id="comment-delete-btn" th:onclick="commentDelete([[${comment.id}]])"
+                                    value="삭제"></div>
+                    </div>
+                    <hr style="solid-color: #D3D3D3; margin-top: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 댓글 부분 -->
+
+
 <!--                                        <input type="hidden" id="memberId" th:value="${member_id}">-->
 
 
 <script >
 
-    const clickLikeUrl = "https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/icons/like_click.png";
+    const postId = $('#postId').val();
+
+
+  /** 댓글 작성 **/
+    $("#comment-write-btn").click(function () {
+
+        const data = {
+            content : $("#commentContent").val(),
+            postId : $("#postId").val()
+        }
+
+        if(!data.content || data.content === ""){
+            alert('공백 또는 입력하지 않은 부분이 존재합니다.');
+            return false;
+        } else{
+            const con_check = confirm("댓글을 작성하시겠습니까?");
+            if(con_check){
+                $.ajax({
+                    type: 'post',
+                    url: '/rest/form/post/' + data.postId + "/comment",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=utf-8',
+
+                }).done(function(){
+                    location.reload();
+                }).fail(function(error){
+                    alert(JSON.stringify(error));
+                })
+            }
+        }
+    });
+
+    /** 댓글 삭제 **/
+    function commentDelete(commentId){
+
+        const con_check = confirm("댓글을 삭제하시겠습니까?");
+
+        if(con_check === true){
+            $.ajax({
+                type: 'delete',
+                url: '/rest/form/post/'+postId+'/comment/'+commentId,
+            }).done(function(){
+                alert('댓글이 삭제되었습니다.');
+                window.location.reload();
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+        }
+    }
+
+
+ /** 좋아요 부분 **/
+const clickLikeUrl = "https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/icons/like_click.png";
 const emptyLikeUrl = "https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/icons/like_empty.png";
 
 /** 좋아요 유무에 따라 하트 그림 다르게 보여줌 **/
