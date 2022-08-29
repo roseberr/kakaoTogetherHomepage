@@ -1,6 +1,7 @@
 package kakao.kakaoClone.domain.board;
 
 import kakao.kakaoClone.domain.BaseTimeEntity;
+import kakao.kakaoClone.domain.comment.Comment;
 import kakao.kakaoClone.domain.likes.UserLikePost;
 import kakao.kakaoClone.domain.user.User;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class Post extends BaseTimeEntity {
     //@JoinColumn(name="MEMBER_ID")
     //private User user;
 
+    /**  form 받는 값들   */
     @Column(length=50, nullable = false)
     private String bigCategory;     //같이기부 프로모션
 
@@ -77,24 +79,34 @@ public class Post extends BaseTimeEntity {
     @Column(length=500,nullable = false)
     private Long currentPrice;
 
+    /**     form 값 받는것 end     */
 
+    /**     view 개수 count       */
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int viewCount;
 
+    /**      like 개수 Count       */
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int likeCount;
 
 
+    /**     comment list 입력      */
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comment;
+
+    /**     User연결               */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**     User의 모든 post                    */
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id asc")
     private List<Post> post;
-
+    /**     User의 좋아요 표시한 post입력        */
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserLikePost> memberLikePost;
+    private List<UserLikePost> userLikePost;
 
     @Builder
     public Post(String topic, String bigCategory , String smallCategory, String title, String subTitle,
