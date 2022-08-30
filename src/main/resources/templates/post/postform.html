@@ -105,7 +105,7 @@ background-size: cover;
         </div>
         <div class="col-auto">
 
-            <div sec:authorize-expr="isAuthenticated()" lass="d-block">
+            <div sec:authorize-expr="isAuthenticated()" or th:unless="${#strings.equals(postId,login_id)}"  lass="d-block">
                 <!-- 로그인 유저와 작성자가 동일하지 않다면 -->
                 <!-- 좋아요 -->
                 <input type="hidden" id="like_check" th:value="${like}">
@@ -184,7 +184,9 @@ background-size: cover;
 <!-- 댓글 부분 -->
 
 <hr style="solid-color: #D3D3D3">
-<div id="comment-write" class="m-2 container">
+
+<div class="container">
+<div id="comment-write" class="m-2 ">
     <div class="row">
                                 <span sec:authorize-expr="isAuthenticated()">
                                     <input type="hidden" id="commentWriter" th:value="${login_id}">
@@ -199,27 +201,29 @@ background-size: cover;
                                     </div>
                                 </span>
         <!-- 댓글 리스트 -->
-        <div id="comment-list" class="m-2 container">
+        <div id="comment-list" class="m-2 ">
             <div class="container">
                 <div class="row" th:each="comment: ${commentList}">
                     <div class="col-md-6">
                         <div
                                 th:text="${comment.name} +'  '+${comment.createdDate}"></div>
                         <div class="text-dark" th:text="${comment.content}"></div>
-                        <div><input class="btn btn-danger" type="button" sec:authorize-expr="isAuthenticated()" or th:if="${#strings.equals(comment.getMemberId(),login_id)}"
+                        <div><input class="btn btn-danger" type="button" sec:authorize-expr="isAuthenticated()"
                                     id="comment-delete-btn" th:onclick="commentDelete([[${comment.id}]])"
                                     value="삭제"></div>
                     </div>
                     <hr style="solid-color: #D3D3D3; margin-top: 10px;">
                 </div>
             </div>
+
         </div>
     </div>
+</div>
 </div>
 <!-- 댓글 부분 -->
 
 
-<!--                                        <input type="hidden" id="memberId" th:value="${member_id}">-->
+
 
 
 <script >

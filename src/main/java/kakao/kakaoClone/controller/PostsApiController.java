@@ -129,7 +129,6 @@ public class PostsApiController {
 
     }
 
-
     //수정하기 getmapping
     @GetMapping("/api/post/modify")
     public String one(Model model, @RequestParam Long post_id) {
