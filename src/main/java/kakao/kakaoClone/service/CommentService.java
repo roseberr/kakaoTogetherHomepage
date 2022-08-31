@@ -50,12 +50,28 @@ public class CommentService {
         Post post = postRepository.findById(post_id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
 
+
         /* 요청 받은 CommentDto에 member, post 정보 추가하여 entity로 변환 */
         Comment comment = requestDto.toEntity(user, post);
         commentRepository.save(comment);
 
+        System.out.println("댓글 저장완료");
+        System.out.println(requestDto.getDonationMoney());
+        System.out.println(post.getCurrentPrice());
+
+
+        /** 현재까지 기부된가격 기부받아서 경신*/
+
+        updateCurrentPrice(post_id,post.getCurrentPrice()+ requestDto.getDonationMoney());
+
+
         log.info("댓글 저장 완료");
         return comment.getId();
+    }
+    public void updateCurrentPrice(Long post_id,Long changeValue){
+        Post post = postRepository.findById(post_id).orElseThrow(() ->
+                new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
+        post.setCurrentPrice(changeValue);
     }
 
     /** 댓글 수정 **/
