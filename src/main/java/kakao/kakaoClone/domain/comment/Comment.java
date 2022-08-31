@@ -24,6 +24,9 @@ public class Comment extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @Column(length=500,nullable = false, columnDefinition = "integer default 0")
+    private Long donationMoney;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

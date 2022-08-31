@@ -18,9 +18,13 @@ public class CommentDto {
         private String content;
         private String createdDate, modifiedDate;
 
+        private Long donationMoney;
+
         private Post post;
 
         private User user;
+
+
 
         public void setPost(Post post){
             this.post = post;
@@ -30,6 +34,8 @@ public class CommentDto {
             this.user = user;
         }
 
+
+
         /* Dto -> Entity */
         public Comment toEntity(User user, Post post) {
             Comment comment = Comment.builder()
@@ -37,6 +43,7 @@ public class CommentDto {
                     .content(content)
                     .user(user)
                     .post(post)
+                    .donationMoney(donationMoney)
                     .build();
 
             return comment;
@@ -51,6 +58,8 @@ public class CommentDto {
         private String content;
         private String createdDate, modifiedDate;
 
+        private Long donationMoney;
+
         private String name;
 
         private Long memberId;
@@ -63,7 +72,7 @@ public class CommentDto {
             this.name = comment.getUser().getName();
             this.createdDate = comment.getCreatedDate();
             this.modifiedDate = comment.getModifiedDate();
-
+            this.donationMoney=comment.getDonationMoney();
             this.postId = comment.getPost().getId();
             this.memberId = comment.getUser().getId();
         }

@@ -195,7 +195,7 @@ background-size: cover;
                     <div class="row" th:each="comment: ${commentList}">
                         <div class="col-md-6">
                             <div
-                                    th:text="${comment.name} +'  '+${comment.createdDate}"></div>
+                                    th:text="${comment.name} +'  '+${comment.createdDate}+'  '+${comment.donationMoney}"></div>
                             <div class="text-dark" th:text="${comment.content}"></div>
                             <div><input class="btn btn-danger" type="button" sec:authorize-expr="isAuthenticated()"
                                         id="comment-delete-btn" th:onclick="commentDelete([[${comment.id}]])"
@@ -324,13 +324,6 @@ background-size: cover;
 </script>
 
 
-
-
-
-
-
-
-
 <script >
     /** 댓글 작성 **/
     const postId = $('#postId').val();
@@ -338,11 +331,12 @@ background-size: cover;
 
   /** 댓글 작성 **/
     $("#donationModalPay").click(function () {
-
+        console.log("댓글 작성 시작");
+        var price = $('#modalPrice').text();
         const data = {
             content : $("#modalCommentContent").val(),
-            postId : $("#postId").val()
-            modalPrice:$("#modalPrice").val()
+            postId : $("#postId").val(),
+            donationMoney:parseInt(price)
 
         }
 
