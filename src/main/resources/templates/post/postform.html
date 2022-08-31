@@ -174,7 +174,8 @@ background-size: cover;
                 <a href="#" class="btn btn-primary" onclick="clip();return false;"> <img src="/icons/share-from-square-solid.svg" alt="" width="20"
                                                           height="25">URL 주소복사</a>
         -->
-        <a href="#" class="btn btn-primary active" data-bs-toggle="modal" data-bs-target="#modalDonation">기부하기</a>
+
+        <a sec:authorize-expr="isAuthenticated()" href="#" class="btn btn-primary active" data-bs-toggle="modal" data-bs-target="#modalDonation">기부하기</a>
 
     </div>
 </div>
@@ -187,18 +188,7 @@ background-size: cover;
 <div class="container">
     <div id="comment-write" class="m-2 ">
         <div class="row">
-                                <span sec:authorize-expr="isAuthenticated()">
-                                    <input type="hidden" id="commentWriter" th:value="${login_id}">
-                                    <div class="col-md-6">
-                                        <div class="input-group input-group-dynamic">
-                                            <label class="form-label">댓글 작성</label>
-                                            <input type="text" class="form-control" id="commentContent">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button class="col-auto btn btn-primary" id="comment-write-btn">댓글 등록</button>
-                                    </div>
-                                </span>
+
             <!-- 댓글 리스트 -->
             <div id="comment-list" class="m-2 ">
                 <div class="container">
@@ -256,7 +246,7 @@ background-size: cover;
                 margin-top: -5px;
                 text-align: right;">원</span>
 
-                <input type="hidden" name="modalPrice" th:value="0">
+
 
                 <span id="modalPrice"
                       style="
@@ -272,7 +262,7 @@ background-size: cover;
 
                 <br>
                 <p>응원댓글 쓰기</p>
-                <textarea class="form-control" rows="5" id="commentContent1" placeholder="따뜻한 한마디를 남겨주세요!"></textarea>
+                <textarea class="form-control" rows="5" id="modalCommentContent" placeholder="따뜻한 한마디를 남겨주세요!"></textarea>
                 <p style="color:darkgray">결제내역은 마이페이지에서 확인해 주세요.</p>
 
 
@@ -280,7 +270,7 @@ background-size: cover;
               </div>
         <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" style="background-color:darkgray"  data-bs-dismiss="modal" onclick="donate_close()">닫기</button>
-                <button  id="comment-write-btn1" type="button" class="btn btn-secondary " style= "  background-color: #dc287c; ">결제하기</button>
+                <button  id="donationModalPay" type="button" class="btn btn-secondary " style= "  background-color: #dc287c; ">결제하기</button>
             </div>
         </div>
     </div>
@@ -294,8 +284,9 @@ background-size: cover;
 
 <script type="text/javascript">
 	function donate_close(){
-        var price = $('#modalPrice').text();
         $('#modalPrice').text("0");
+        $('#modalCommentContent').text();
+
 	}
 
 	function donate_go(){
@@ -324,7 +315,6 @@ background-size: cover;
 
 		$('#modalPrice').text(newPrice);
 
-
 		 console.log("newPrice:"+newPrice);
 		 console.log("price:"+price);
 		 console.log("changeprice 완료");
@@ -347,11 +337,13 @@ background-size: cover;
 
 
   /** 댓글 작성 **/
-    $("#comment-write-btn").click(function () {
+    $("#donationModalPay").click(function () {
 
         const data = {
-            content : $("#commentContent").val(),
+            content : $("#modalCommentContent").val(),
             postId : $("#postId").val()
+            modalPrice:$("#modalPrice").val()
+
         }
 
         if(!data.content || data.content === ""){
