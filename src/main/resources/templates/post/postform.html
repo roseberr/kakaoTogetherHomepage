@@ -183,27 +183,28 @@ background-size: cover;
 
 <!-- 댓글 부분 -->
 
-<hr style="solid-color: #D3D3D3">
+
 
 <div class="container">
+    <hr style="solid-color: #D3D3D3">
     <div id="comment-write" class="m-2 ">
         <div class="row">
 
             <!-- 댓글 리스트 -->
             <div id="comment-list" class="m-2 ">
-                <div class="container">
-                    <div class="row" th:each="comment: ${commentList}">
-                        <div class="col-md-6">
-                            <div
-                                    th:text="${comment.name} +'  '+${comment.createdDate}+'  '+${comment.donationMoney}"></div>
-                            <div class="text-dark" th:text="${comment.content}"></div>
-                            <div><input class="btn btn-danger" type="button" sec:authorize-expr="isAuthenticated()"
-                                        id="comment-delete-btn" th:onclick="commentDelete([[${comment.id}]])"
-                                        value="삭제"></div>
-                        </div>
-                        <hr style="solid-color: #D3D3D3; margin-top: 10px;">
+
+                <div class="row" th:each="comment: ${commentList}">
+                    <div class="col-md-6">
+                        <div
+                                th:text="${comment.name} +'  '+${comment.createdDate}+'  '+${comment.donationMoney}"></div>
+                        <div class="text-dark" th:text="${comment.content}"></div>
+                        <div><input class="btn btn-danger" type="button" sec:authorize-expr="isAuthenticated()"
+                                    id="comment-delete-btn" th:onclick="commentDelete([[${comment.id}]])"
+                                    value="삭제"></div>
                     </div>
+                    <hr style="solid-color: #D3D3D3; margin-top: 10px;">
                 </div>
+
 
             </div>
         </div>
@@ -211,34 +212,29 @@ background-size: cover;
 </div>
 <!-- 댓글 부분 -->
 
-<!-- 기부금 결제 modal -->
 
 
 <!-- 기부금 결제 modal -->
-
-
-
-
 
 <div class="modal " tabindex="-1" id="modalDonation">
 
     <form action="/donation.action" method="post" name="donationForm" class="form">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <strong  class="modal-title">기부금 결제</strong>
-                <button type="button" onclick="donate_close()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>무통장은 3천원,기타 결제는 1천원부터 가능합니다.</p>
-                <div class="col-auto">
-                    <button type="button" class="btn btn-secondary" style="background-color:darkgray" onclick="changePrice(5000)">+5천원</button>
-                    <button type="button" class="btn btn-secondary" style="background-color:darkgray" onclick="changePrice(10000)">+1만원</button>
-                    <button type="button" class="btn btn-secondary" style="background-color:darkgray" onclick="changePrice(50000)">+5만원</button>
-                    <button type="button" class="btn  btn-outline-dark" style=" " onclick="changePrice(0)">다시입력</button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <strong  class="modal-title">기부금 결제</strong>
+                    <button type="button" onclick="donate_close()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <p>무통장은 3천원,기타 결제는 1천원부터 가능합니다.</p>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-secondary" style="background-color:darkgray" onclick="changePrice(5000)">+5천원</button>
+                        <button type="button" class="btn btn-secondary" style="background-color:darkgray" onclick="changePrice(10000)">+1만원</button>
+                        <button type="button" class="btn btn-secondary" style="background-color:darkgray" onclick="changePrice(50000)">+5만원</button>
+                        <button type="button" class="btn  btn-outline-dark" style=" " onclick="changePrice(0)">다시입력</button>
+                    </div>
 
-                <span style="
+                    <span style="
                 display: inline-block;
 	            float: right;
 	            font-size: 15px;
@@ -248,8 +244,8 @@ background-size: cover;
 
 
 
-                <span id="modalPrice"
-                      style="
+                    <span id="modalPrice"
+                          style="
                     display: inline-block;
                     padding-right: 4px;
                     font-size: 22px;
@@ -260,22 +256,26 @@ background-size: cover;
 
 
 
-                <br>
-                <p>응원댓글 쓰기</p>
-                <textarea class="form-control" rows="5" id="modalCommentContent" placeholder="따뜻한 한마디를 남겨주세요!"></textarea>
-                <p style="color:darkgray">결제내역은 마이페이지에서 확인해 주세요.</p>
+                    <br>
+                    <p>응원댓글 쓰기</p>
+                    <textarea class="form-control" rows="5" id="modalCommentContent" placeholder="따뜻한 한마디를 남겨주세요!"></textarea>
+                    <p style="color:darkgray">결제내역은 마이페이지에서 확인해 주세요.</p>
 
 
 
-              </div>
-        <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" style="background-color:darkgray"  data-bs-dismiss="modal" onclick="donate_close()">닫기</button>
-                <button  id="donationModalPay" type="button" class="btn btn-secondary " style= "  background-color: #dc287c; ">결제하기</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="background-color:darkgray"  data-bs-dismiss="modal" onclick="donate_close()">닫기</button>
+                    <button  id="donationModalPay" type="button" class="btn btn-secondary " style= "  background-color: #dc287c; ">결제하기</button>
+                </div>
             </div>
         </div>
-    </div>
     </form>
 </div>
+
+
+
+
 
 
 
