@@ -11,6 +11,7 @@ import kakao.kakaoClone.domain.comment.CommentRepository;
 import kakao.kakaoClone.service.CommentService;
 import kakao.kakaoClone.service.PostService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 
 import org.springframework.core.io.Resource;
@@ -27,6 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 @ComponentScan
+@Slf4j
 
 public class PostsApiController {
 
@@ -70,16 +72,15 @@ public class PostsApiController {
         }
         postService.save(requestDto, file,user.getId());
 
-        System.out.println(requestDto.getBigCategory());
+        log.info("requestDto.getBigCategory : {}", requestDto.getBigCategory());
 
-        System.out.println("post end");
-        if (requestDto.getBigCategory()=="promotion"){
-            return "redirect:/promotion";
+        if (requestDto.getBigCategory().equals("donationTogether")){
+            return "redirect:/";
 
         } else {
 
-            System.out.println(requestDto.getBigCategory());
-            return "redirect:/";
+
+            return "redirect:/promotion";
         }
     }
     /**postform 등록하기ㅣ*/
