@@ -44,6 +44,7 @@
 
 - **프론트 개발 환경 및 언어**
   - `html5`
+  - `css`
   - `thymeleaf`
   - `bootstrap template`
   - `javascript`
@@ -89,3 +90,14 @@
 
 # 3. DB 설계
 ## ERD
+
+
+
+
+
+# 4. API 설계
+
+
+
+# 5. 참고사이트
+
