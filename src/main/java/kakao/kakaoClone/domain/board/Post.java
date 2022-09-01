@@ -70,14 +70,16 @@ public class Post extends BaseTimeEntity {
     @Column(length=500, nullable = false)
     private String endDate;
 
-    //최종모금액
-    @Column(length=500,nullable = false)
-    private Long endPrice;
-
     //현재 모금액
 
     @Column(length=500,nullable = false)
     private Long currentPrice;
+
+    //최종모금액
+    @Column(length=500,nullable = false)
+    private Long endPrice;
+
+
 
     /**     form 값 받는것 end     */
 
