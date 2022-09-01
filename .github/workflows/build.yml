@@ -23,4 +23,4 @@ jobs:
         run: |
           chmod +x ./gradlew
           ./gradlew bootJar
-          docker build -t roseberr/kakaoTogetherHomepageClone:latest ./
+          docker build -t roseberr/kakao-clone:latest ./
