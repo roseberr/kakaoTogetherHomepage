@@ -8,6 +8,7 @@ import kakao.kakaoClone.domain.board.PostSaveRequestDto;
 import kakao.kakaoClone.domain.board.PostUpdateRequestDto;
 import kakao.kakaoClone.domain.comment.CommentDto;
 import kakao.kakaoClone.domain.comment.CommentRepository;
+import kakao.kakaoClone.domain.message.Message;
 import kakao.kakaoClone.service.CommentService;
 import kakao.kakaoClone.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.net.MalformedURLException;
@@ -58,7 +60,7 @@ public class PostsApiController {
 
     /** 등록하기 postmapping  */
     @PostMapping("/api/post")
-    public String save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file) throws Exception {
+    public ModelAndView save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file,ModelAndView mav) throws Exception {
         System.out.println("post start");
 
         if(requestDto.getBigCategory()==null){
@@ -75,14 +77,19 @@ public class PostsApiController {
         log.info("requestDto.getBigCategory : {}", requestDto.getBigCategory());
 
         if (requestDto.getBigCategory().equals("donationTogether")){
-            return "redirect:/";
+            mav.addObject("data", new Message("글이 등록되었습니다!", "/"));
+            mav.setViewName("/message/message.html");
+
+            return mav;
 
         } else {
+            mav.addObject("data", new Message("글이 등록되었습니다!", "/promotion"));
+            mav.setViewName("message/message.html");
 
-
-            return "redirect:/promotion";
+            return mav;
         }
     }
+
     /**postform 등록하기ㅣ*/
     @GetMapping("/api/post/form")
     public String form(Model model, @RequestParam(required = false) Long post_id) {
@@ -152,22 +159,36 @@ public class PostsApiController {
 
 
     @PutMapping("/api/post/modify/{id}")// 수정하기
-    public String update(@ModelAttribute PostUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file, Model model) throws Exception {
+    public ModelAndView update(@ModelAttribute PostUpdateRequestDto requestDto, @PathVariable Long id, MultipartFile file, Model model,ModelAndView mav) throws Exception {
         System.out.println("update putmapping start");
 
         postService.update(requestDto, file, id);
         System.out.println("update putmapping end");
 
-        return "redirect:/";
+        if (requestDto.getBigCategory().equals("donationTogether")){
+            mav.addObject("data", new Message("글이 수정되었습니다!", "/"));
+            mav.setViewName("/message/message.html");
+
+            return mav;
+
+        } else {
+            mav.addObject("data", new Message("글이 수정되었습니다!", "/promotion"));
+            mav.setViewName("message/message.html");
+
+            return mav;
+        }
     }
 
 
     // 삭제하기
     @DeleteMapping("/api/post/modify/{id}")
-    String deletePost(@PathVariable Long id) {
+    ModelAndView deletePost(@PathVariable Long id,ModelAndView mav) {
         System.out.println("/api/post/list/{board_id} 삭제하기 화면 시작");
         postService.deleteBoard(id);
-        return "redirect:/";
+        mav.addObject("data", new Message("글이 삭제되었습니다!", "/"));
+        mav.setViewName("message/message.html");
+
+        return mav;
     }
 
     // feed image 반환하기
