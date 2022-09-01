@@ -93,6 +93,7 @@
 ## ERD
 
 
+![image](https://user-images.githubusercontent.com/26202424/187957680-004a1309-264e-4eae-99e6-1b8965a8a40d.png)
 
 
 
