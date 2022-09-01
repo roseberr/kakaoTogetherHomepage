@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Set up Java for Gradle
+        uses: graalvm/setup-graalvm@v1
+        with:
+          version: "latest"
+          java-version: "17"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Push
+        run: |
+          chmod +x ./gradlew
+          ./gradlew bootJar
+          docker build -t roseberr/kakao-clone:latest ./
