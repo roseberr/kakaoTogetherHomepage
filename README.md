@@ -122,4 +122,4 @@
 - 사람일러스트레이션
   -   https://undraw.co/illustrations
 - 유효성 검사
-  -   https://www.notion.so/318d0221ae4a4011af733af74d9afb53#fadc80408dc44a6c85acfb871ad48f2a
+  -   https://www.youtube.com/watch?v=nx5UuyS8foI&t=955s
