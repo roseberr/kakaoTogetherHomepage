@@ -27,9 +27,11 @@
       >-  Amazon S3에 파일 저장 
   - 회원 활동 내역 관리 기능 구현
   - 글 `카테고리별/조회순/추천순/최신순` 조회 기능
+  - 권한 관리를 통한 접근 제한
   - 관리자에게 문의 메일 전송 기능
   - 프로그래밍을 통한 웹서버와 데이터베이스 연동
   - 프로그램의 효율과 사용자 편의성을 고려한 디자인 실현 
+
 
 - **백엔드 개발 언어** : `Java 11`
 - **백엔드 개발 환경**
@@ -66,6 +68,7 @@
 - 게시물 CRUD+파일 첨부 기능
 - 글 카테고리별/조회순/추천순/최신순 조회 기능
 - 게시물 댓글 기능
+- 권한 관리를 통한 접근 제한
 
 
 ## 회원 기능
@@ -88,10 +91,13 @@
 - 회원은 강의를 `등록`/`조회`/`수정`/`삭제` 할 수 있다
 - 회원은 기부모집글에 `댓글을 작성` / `좋아요`할 수 있다.
 
+## 권한 관리
+> - 회원은 작성한 글과 댓글에서만 수정 삭제가 가능하다.
+- 로그인한 사용자 글 작성 권한
+- 본인 작성 글에 대한 권한관리
 
 # 3. DB 설계
 ## ERD
-
 
 ![image](https://user-images.githubusercontent.com/26202424/187957680-004a1309-264e-4eae-99e6-1b8965a8a40d.png)
 
@@ -102,4 +108,18 @@
 
 
 # 5. 참고사이트
+- 스프링 부트와 AWS로 혼자 구현하는 웹서비스
+- 인프런 김영한님 스프링 강의
+- https://github.com/jylees2/Helpring 
 
+
+- 아이콘
+  - [https://drawkit.com/](https://drawkit.com/)
+  - [https://fontawesome.com/versions](https://fontawesome.com/versions)  
+
+- 사진
+  -  https://unsplash.com/
+- 사람일러스트레이션
+  -   https://undraw.co/illustrations
+- 유효성 검사
+  -   https://www.notion.so/318d0221ae4a4011af733af74d9afb53#fadc80408dc44a6c85acfb871ad48f2a
