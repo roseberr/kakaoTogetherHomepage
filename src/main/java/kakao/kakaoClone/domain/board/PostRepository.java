@@ -13,11 +13,12 @@ public interface PostRepository extends JpaRepository<Post,Long> {
     /** id로 Post 찾기**/
     Optional<Post>findById(Long id);
 
+    List<Post> findByUserId(Long UserId);
+
+
     /** category 로  Post 찾기**/
    List<Post> findByBigCategoryAndSmallCategory(String bigCategory, String smallCategory);
    List<Post> findByBigCategory(String bigCategory);
-
-
 
     /** member_id로 post 찾기 - 유저 본인이 작성한 게시물 반환 **/
 
