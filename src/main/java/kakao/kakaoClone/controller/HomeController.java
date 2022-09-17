@@ -35,6 +35,16 @@ public class HomeController {
 
         return "index.html";
     }
+    @GetMapping("/moredetail")
+    public String moredetail(Model model){
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
+        return "mypage/moredetail.html";
+    }
+
+
     @GetMapping("/mypage")
     public String homepage(Model model){
         SessionUser user=(SessionUser) httpSession.getAttribute("user");
