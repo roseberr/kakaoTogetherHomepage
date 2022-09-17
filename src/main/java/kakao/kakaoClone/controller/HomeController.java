@@ -35,6 +35,21 @@ public class HomeController {
 
         return "index.html";
     }
+    @GetMapping("/mypage")
+    public String homepage(Model model){
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+        }
+        /** user가 작성한 post return **/
+        List<Post> posts= postRepository.findByUserId(user.getId());
+
+        if(posts!=null){
+            model.addAttribute("post",posts);
+        }
+
+        return "mypage/mypage.html";
+    }
 
     @GetMapping("/donationTogether/ing")
     public String donation_ing(Model model){
