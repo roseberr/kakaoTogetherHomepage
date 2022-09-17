@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <!--
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+            -->
+    <!--        <title>Page title         </title>                                -->
+    <!--        필요하다면 개별 파일에 사용될 css/js 선언                               -->
+</head>
+
+<body layout:fragment="content">
+
+<div class="container" style="text-align:center; content-align:center;
+  justify-content: center;">
+    <p><br><br></p>
+    <div class=" bg-light position-relative">
+        <div class="col-auto">
+            <h3 style="font-weight:bold"><br>솔찬과 같이가치 제작기</h3>
+
+            <br><br>
+            <div style=" width: 150px;
+                        height: 150px;
+                        border-radius: 70%;
+                        overflow: hidden;
+                        margin : auto;
+
+                        ">
+                <img style="  width: 100%;
+                              height: 100%;
+                              object-fit: cover;
+                                margin : auto;"
+                     src="https://solchan-kakao-web-bucket.s3.ap-northeast-2.amazonaws.com/icons/solchanphoto.jpg">
+            </div>
+            <br>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+
+</div>
+
+<div class="container">
+
+
+    <h5 style="mb-4">1인 개발:방솔찬(Bhang Sol Chan)</h5>
+    <h5 style="mb-4; ">작업기간:2022.07.08~</h5>
+    <a style="mb-4; h2;"> Github:</a>
+
+
+    <a class="h2;" href="https://github.com/roseberr/kakaoTogetherHomepageClone">https://github.com/roseberr/kakaoTogetherHomepageClone</a>
+
+
+</div>
+</body>
+
+</html>
