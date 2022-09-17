@@ -7,84 +7,44 @@
 <head>
     <meta charset="UTF-8">
 
-    -->
+
     <!--        <title>Page title         </title>                                -->
     <!--        필요하다면 개별 파일에 사용될 css/js 선언                               -->
 </head>
 
 <body layout:fragment="content">
-
-
-<div class="row g-0 bg-light position-relative">
-    <div class="container">
-        <div th:each="post : ${post}">
-
+<div class="container">
+    <h3><br>작성한 글</h3>
+</div>
+<div class="container">
+    <div th:each="post : ${post}">
+        <p><br><br></p>
+        <div class="row g-0 bg-light position-relative">
             <div class="col-md-6 mb-md-0 p-md-4">
                 <a th:href="@{/api/post/form(post_id=${post.id})}" class="stretched-link">
-                <img th:src="${post.filepath}"  class="w-100 " alt="..."  >
+                    <img th:src="${post.filepath}" height="200px" alt="...">
+
                 </a>
             </div>
 
-            <div class="col-md-6 p-4 ps-md-0">
+            <div class="col-auto " style="justify-content:center;
+                                    align-items:center;  display: flex;">
+                <a>
+                    <h4 style="font-weight:bold pb-4" th:text="${post.title}"></h4>
 
-                <h4  style="font-weight:bold"  th:text="${post.title}"></h4>
+                    <h5 th:if="${post.bigCategory}=='donationTogether'">같이기부</h5>
+                    <h5 th:if="${post.bigCategory}=='promotion'">프로모션</h5>
 
-                <h5  th:text="${post.bigCategory}"></h5>
+                    <span class="h5">작성 날짜:</span>
 
-                <span class="h5">작성 날짜:</span>
-
-                <span class="h5" th:text="${post.createdDate}"></span>
+                    <span class="h5" th:text="${post.createdDate}"></span>
+                </a>
             </div>
 
         </div>
     </div>
 </div>
 
-
-<div class="card-deck py-5 ">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3  embed-responsive embed-responsive-16by9 ">
-
-            <div th:each="post : ${post}">
-
-
-                <div class="card shadow-sm rounded ">
-                    <a th:href="@{/api/post/form(post_id=${post.id})}">
-                        <!-- <p>"[[${post.filepath}]]" </p>-->
-                        <!--<img th:src="[[${post.filepath}]]"  class="img-fluid img-thumbnail" alt="image"  th:if="${post.filepath != null}"/>-->
-                        <!--<resource mapping="/files/*" location="/files/"/>-->
-                        <div><img th:src="${post.filepath}" height="180px" style="justify-content:center;
-                                    align-items:center;object-fit:cover;"
-                                  class="card-img-top embed-responsive-item " alt=[[${post.filepath}]]></div>
-
-                    </a>
-
-                    <!-- th:href="/api/post/list(board_id=${post.board_id})"  /files/img.png -->
-                    <!-- [[${post.filepath}]]-->
-                    <div class="card-body post">  <!--<span id="title"   th:text="${post.title}"></span>-->
-
-
-                        <h5 class="d-flex justify-content-between align-items-center"></h5>
-                        <h5 class="card-title " th:text="${post.title}"></h5>
-                        <p class="card-text" th:text="${post.author}"></p>
-                        <div class="text-right" style=" font-weight: bolder;"
-                             th:text="'최종모금액: '+${post.endPrice}+'원'"></div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info  progress-width" role="progressbar"
-                                 aria-label="Info example"
-                                 th:style="'width:calc(' +${post.currentPrice} +'%*100/' +${post.endPrice} +');     '"
-                                 aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
 
 </body>
 </html>
