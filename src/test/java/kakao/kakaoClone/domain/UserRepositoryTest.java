@@ -13,7 +13,7 @@ import java.util.List;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+/**
 @SpringBootTest
 
 public class UserRepositoryTest {
@@ -24,7 +24,9 @@ public class UserRepositoryTest {
     public void cleanup(){
         userRepository.deleteAll();
     }
+
     @Test
+
     public void 멤버_불러오기(){
         //given
 
@@ -37,12 +39,12 @@ public class UserRepositoryTest {
                 .email(email)
                 .build());
 
-/*
+
         userRepository.save(User.builder()
                 .name(name)
                 .email(email)
                 .build());
-            */
+
 
         //when
         List<User> userList = userRepository.findAll();
@@ -53,4 +55,6 @@ public class UserRepositoryTest {
 
     }
 
+
 }
+**/
