@@ -14,6 +14,7 @@ class PostRepositoryTest {
     public void cleanup(){
         postRepository.deleteAll();
     }
+    /**
     @Test
     public void 게시글_불러오기(){
         String title="테스트 게시글";
@@ -21,5 +22,5 @@ class PostRepositoryTest {
 
     }
 
-
+**/
 }
