@@ -46,3 +46,4 @@ application-oauth.properties
 application-aws.properties
 
 /amazon s3/new_user_credentials.csv
+/amazonEc2/
