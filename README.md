@@ -53,7 +53,7 @@
   - `javascript`
   - `jquery`
   
-- **데이터베이스** : `H2`
+- **데이터베이스** : `H2,MARIA DB`
 - **형상관리** : `GitHub`
 - **이슈 관리** : `GitHub`
 
