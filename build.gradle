@@ -4,12 +4,18 @@ plugins {
 	id 'java'
 }
 
-group = 'environmentHomepage'
+group = 'kakaoTogetherHomepage'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
+}
+
+bootJar{
+	archiveBaseName='kakaoTogetherHomepage'
+	archiveFileName='kakaoTogetherHomepage.jar'
+	archiveVersion="0.0.0"
 }
 
 dependencies {
