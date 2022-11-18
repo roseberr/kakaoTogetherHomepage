@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'kakaoTogetherHomepage'
+group = 'environmentHomepage'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -47,6 +47,7 @@ dependencies {
 	}
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.mariadb.jdbc:mariadb-java-client'
 }
 
 tasks.named('test') {
