@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'environment'
+group = 'environmentHomepage'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -45,4 +45,8 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	enabled = false
 }
