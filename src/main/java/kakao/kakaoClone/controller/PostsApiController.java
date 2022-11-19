@@ -61,10 +61,9 @@ public class PostsApiController {
 
     /** 등록하기 postmapping  */
     @PostMapping("/api/posttest")
-    public String save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file) throws Exception {
-        //,ModelAndView mav
+    public ModelAndView save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file) throws Exception {
         System.out.println("post start");
-
+        ModelAndView mav = new ModelAndView();
         if(requestDto.getBigCategory()==null){
             System.out.println("requestDto.getBigCategory():null");
         }
@@ -78,7 +77,6 @@ public class PostsApiController {
 
         log.info("requestDto.getBigCategory : {}", requestDto.getBigCategory());
 
-        /**
         if (requestDto.getBigCategory().equals("donationTogether")){
             mav.addObject("data", new alarmMsg("글이 등록되었습니다!", "/"));
             mav.setViewName("/message/mymessage.html");
@@ -89,10 +87,6 @@ public class PostsApiController {
 
         }
         return mav;
-
-
-         **/
-        return "index.html";
 
     }
 
