@@ -8,7 +8,7 @@ import kakao.kakaoClone.domain.board.PostSaveRequestDto;
 import kakao.kakaoClone.domain.board.PostUpdateRequestDto;
 import kakao.kakaoClone.domain.comment.CommentDto;
 import kakao.kakaoClone.domain.comment.CommentRepository;
-import kakao.kakaoClone.domain.message.Message;
+import kakao.kakaoClone.domain.message.alarmMsg;
 import kakao.kakaoClone.service.CommentService;
 import kakao.kakaoClone.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -78,11 +78,11 @@ public class PostsApiController {
         log.info("requestDto.getBigCategory : {}", requestDto.getBigCategory());
 
         if (requestDto.getBigCategory().equals("donationTogether")){
-            mav.addObject("data", new Message("글이 등록되었습니다!", "/"));
+            mav.addObject("data", new alarmMsg("글이 등록되었습니다!", "/"));
             mav.setViewName("/message/mymessage.html");
 
         } else {
-            mav.addObject("data", new Message("글이 등록되었습니다!", "/promotion"));
+            mav.addObject("data", new alarmMsg("글이 등록되었습니다!", "/promotion"));
             mav.setViewName("message/mymessage.html");
 
         }
@@ -165,11 +165,11 @@ public class PostsApiController {
         System.out.println("update putmapping end");
 
         if (requestDto.getBigCategory().equals("donationTogether")){
-            mav.addObject("data", new Message("글이 수정되었습니다!", "/"));
+            mav.addObject("data", new alarmMsg("글이 수정되었습니다!", "/"));
             mav.setViewName("/message/mymessage.html");
 
         } else {
-            mav.addObject("data", new Message("글이 수정되었습니다!", "/promotion"));
+            mav.addObject("data", new alarmMsg("글이 수정되었습니다!", "/promotion"));
             mav.setViewName("message/mymessage.html");
 
         }
@@ -182,7 +182,7 @@ public class PostsApiController {
     ModelAndView deletePost(@PathVariable Long id,ModelAndView mav) {
         System.out.println("/api/post/list/{board_id} 삭제하기 화면 시작");
         postService.deleteBoard(id);
-        mav.addObject("data", new Message("글이 삭제되었습니다!", "/"));
+        mav.addObject("data", new alarmMsg("글이 삭제되었습니다!", "/"));
         mav.setViewName("message/mymessage.html");
 
         return mav;
