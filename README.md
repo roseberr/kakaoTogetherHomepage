@@ -4,6 +4,7 @@
 
 <br/>
 
+웹페이지 사이트: http://ec2-15-164-39-73.ap-northeast-2.compute.amazonaws.com:8080/
 
 # 1. 프로젝트 개요
 - **프로젝트 명칭** : 솔찬의 같이가치
