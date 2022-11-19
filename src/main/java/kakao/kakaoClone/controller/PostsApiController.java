@@ -78,13 +78,13 @@ public class PostsApiController {
 
         if (requestDto.getBigCategory().equals("donationTogether")){
             mav.addObject("data", new Message("글이 등록되었습니다!", "/"));
-            mav.setViewName("/message/message.html");
+            mav.setViewName("/message/mymessage.html");
 
             return mav;
 
         } else {
             mav.addObject("data", new Message("글이 등록되었습니다!", "/promotion"));
-            mav.setViewName("message/message.html");
+            mav.setViewName("message/mymessage.html");
 
             return mav;
         }
@@ -167,13 +167,13 @@ public class PostsApiController {
 
         if (requestDto.getBigCategory().equals("donationTogether")){
             mav.addObject("data", new Message("글이 수정되었습니다!", "/"));
-            mav.setViewName("/message/message.html");
+            mav.setViewName("/message/mymessage.html");
 
             return mav;
 
         } else {
             mav.addObject("data", new Message("글이 수정되었습니다!", "/promotion"));
-            mav.setViewName("message/message.html");
+            mav.setViewName("message/mymessage.html");
 
             return mav;
         }
@@ -186,7 +186,7 @@ public class PostsApiController {
         System.out.println("/api/post/list/{board_id} 삭제하기 화면 시작");
         postService.deleteBoard(id);
         mav.addObject("data", new Message("글이 삭제되었습니다!", "/"));
-        mav.setViewName("message/message.html");
+        mav.setViewName("message/mymessage.html");
 
         return mav;
     }
