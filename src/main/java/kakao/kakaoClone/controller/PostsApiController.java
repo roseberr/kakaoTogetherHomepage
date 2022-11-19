@@ -59,7 +59,7 @@ public class PostsApiController {
     }
 
     /** 등록하기 postmapping  */
-    @PostMapping("/api/post")
+    @PostMapping("/api/posttest")
     public ModelAndView save(@ModelAttribute PostSaveRequestDto requestDto, MultipartFile file,ModelAndView mav) throws Exception {
         System.out.println("post start");
 
