@@ -55,6 +55,7 @@ public class PostsApiController {
         }
 
         System.out.println("mapping end");
+        System.out.println("goto post test");
         return "post/register.html";
     }
 
