@@ -81,14 +81,12 @@ public class PostsApiController {
             mav.addObject("data", new Message("글이 등록되었습니다!", "/"));
             mav.setViewName("/message/mymessage.html");
 
-            return mav;
-
         } else {
             mav.addObject("data", new Message("글이 등록되었습니다!", "/promotion"));
             mav.setViewName("message/mymessage.html");
 
-            return mav;
         }
+        return mav;
     }
 
     /**postform 등록하기ㅣ*/
@@ -170,14 +168,12 @@ public class PostsApiController {
             mav.addObject("data", new Message("글이 수정되었습니다!", "/"));
             mav.setViewName("/message/mymessage.html");
 
-            return mav;
-
         } else {
             mav.addObject("data", new Message("글이 수정되었습니다!", "/promotion"));
             mav.setViewName("message/mymessage.html");
 
-            return mav;
         }
+        return mav;
     }
 
 
