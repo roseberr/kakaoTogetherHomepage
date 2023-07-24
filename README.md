@@ -4,7 +4,7 @@
 
 <br/>
 
-~~ 웹페이지 사이트: http://ec2-15-164-39-73.ap-northeast-2.compute.amazonaws.com:8080/ ~~
+~~웹페이지 사이트: http://ec2-15-164-39-73.ap-northeast-2.compute.amazonaws.com:8080/~~
 취업완료로 인해 해당 웹사이트를 닫습니다.
 
 # 1. 프로젝트 개요
